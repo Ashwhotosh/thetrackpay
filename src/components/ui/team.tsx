@@ -7,24 +7,24 @@ const teamMembers = [
     role: "Founder & CEO",
   },
   {
-    image: "/image/Team/Prathamesh.png",
-    name: "Prathamesh",
-    role: "Core Developer",
+    image: "/image/Team/Siddhi.jpg",
+    name: "Siddhi",
+    role: "Cofounder & Finance Head",
   },
   {
     image: "/image/Team/Sarthak.jpg",
     name: "Sarthak",
-    role: "Core Developer",
+    role: "Cofounder & Tech Head",
+  },
+  {
+    image: "/image/Team/Prathamesh.png",
+    name: "Prathamesh",
+    role: "Cofounder & AIML/Networking Head",
   },
   {
     image: "/image/Team/Shaurya.jpg",
     name: "Shaurya",
-    role: "Lead Designer",
-  },
-  {
-    image: "/image/Team/Siddhi.jpg",
-    name: "Siddhi",
-    role: "Researcher",
+    role: "Cofounder & Application Head",
   },
 ];
 
@@ -64,7 +64,7 @@ export default function TeamPage() {
           </div>
 
           <h1 className="relative mb-4 font-medium text-4xl text-neutral-100 tracking-tight sm:text-5xl">
-            Creative Team Members
+            Meet the Founders
             <svg
               className="absolute -top-2 -right-8 -z-10 w-24 text-neutral-700"
               fill="currentColor"
@@ -83,8 +83,7 @@ export default function TeamPage() {
             </svg>
           </h1>
           <p className="max-w-2xl text-neutral-400">
-            Trackpay connects you with the most advanced tech solutions,
-            empowering seamless payments and financial communication.
+            A team of innovators, engineers, and designers building the Unified Money OS for the modern Indian user.
           </p>
         </div>
 
@@ -119,27 +118,16 @@ export default function TeamPage() {
         </div>
 
         <div className="mx-auto mt-20 max-w-3xl px-6 text-center lg:px-0">
-          <p className="mb-8 font-medium text-lg text-neutral-200 leading-relaxed md:text-xl">
-            The exceptional support from Trackpay truly impressed us. We
-            suggested an improvement, and their team implemented it with
-            remarkable speed!
+          <p className="mb-8 font-medium text-lg text-neutral-200 leading-relaxed md:text-xl italic">
+            "We are not just building another payment app. We are crafting a Unified Money OS designed to give every Indian complete mastery and automated intelligence over their financial life."
           </p>
-          <div className="flex flex-col items-center gap-3">
-            <div className="relative h-14 w-14 overflow-hidden rounded-full">
-              <img
-                alt="Natalia Kara"
-                className="absolute inset-0 h-full w-full object-cover"
-                src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80"
-              />
-            </div>
-            <div className="text-center">
-              <p className="font-semibold text-neutral-200">
-                Natalia Kara
-              </p>
-              <p className="text-neutral-400 text-sm">
-                CTO · Trackpay Labs
-              </p>
-            </div>
+          <div className="text-center">
+            <p className="font-semibold text-indigo-400">
+              The TrackPay Team
+            </p>
+            <p className="text-neutral-500 text-sm">
+              IIT Madras Nirmaan Pre-Incubated Startup
+            </p>
           </div>
         </div>
       </div>
