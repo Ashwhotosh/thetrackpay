@@ -1,73 +1,43 @@
-# React + TypeScript + Vite
+# TrackPay — Unified Money OS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TrackPay is an ultra-premium, modern website built for the modern Indian user, serving as the central intelligence engine and portal for the TrackPay Unified Money OS.
 
-Currently, two official plugins are available:
+## 🚀 Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Cinematic Landing Hero**: Dynamic interactive 3D environment overlays, skeuomorphic physical card layers, and smooth GSAP/Framer Motion entrance animations.
+- **Scroll Storytelling Vision Page**: Continuous scroll-pinned timeline displaying physical mockup screens aligned with three core product pillars (Next-Gen Bank Aggregation, Smart Automated Rules, and Unified Analytics).
+- **Interactive Team Section**: A custom team grid highlighting the founding team.
+- **Premium Glassmorphic Footer**: Comprehensive bottom navigation, compliance badges (NPCI, Nirmaan IIT Madras), and a premium hover-reveal text mask effect.
 
-## React Compiler
+## 🛡️ Trust & Security
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **IITM Nirmaan**: Proudly pre-incubated at IITM Nirmaan.
+- **NPCI & UPI Compliant**: Built for India's digital public infrastructure.
+- **AES-256 Data Protection**: Bank-grade security and encryption.
 
-## Expanding the ESLint configuration
+## 🛠️ Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Framework**: React + TypeScript + Vite
+- **Styling**: Tailwind CSS + Custom CSS Utilities
+- **Animations**: GSAP (GreenSock Animation Platform) + ScrollTrigger, Framer Motion
+- **Icons**: Custom inline SVGs & Lucide React
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📦 Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2. Start the local development server:
+   ```bash
+   npm run dev
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3. Build the production package:
+   ```bash
+   npm run build
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+© 2026 TrackPay Technologies. All rights reserved.
