@@ -50,12 +50,25 @@ export function WaitlistExperience(): ReactElement {
 
   const [email, setEmail] = useState("")
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [timeLeft, setTimeLeft] = useState({
-    days: 225,
-    hours: 23,
-    minutes: 17,
-    seconds: 58,
-  })
+
+  const calculateTimeLeft = () => {
+    const targetDate = new Date("2026-10-01T00:00:00+05:30")
+    const now = new Date()
+    const difference = targetDate.getTime() - now.getTime()
+
+    if (difference <= 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+    }
+
+    return {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / 1000 / 60) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
+    }
+  }
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
 
   // Three.js background effect
   useEffect(() => {
@@ -218,27 +231,7 @@ export function WaitlistExperience(): ReactElement {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        let { days, hours, minutes, seconds } = prev
-
-        if (seconds > 0) {
-          seconds--
-        } else if (minutes > 0) {
-          minutes--
-          seconds = 59
-        } else if (hours > 0) {
-          hours--
-          minutes = 59
-          seconds = 59
-        } else if (days > 0) {
-          days--
-          hours = 23
-          minutes = 59
-          seconds = 59
-        }
-
-        return { days, hours, minutes, seconds }
-      })
+      setTimeLeft(calculateTimeLeft())
     }, 1000)
 
     return () => clearInterval(timer)
