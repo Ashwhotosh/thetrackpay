@@ -216,6 +216,7 @@ export function CinematicHero({
   
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
     days: 225,
     hours: 23,
@@ -251,11 +252,36 @@ export function CinematicHero({
     return () => clearInterval(timer);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      setIsSubmitted(true);
-      console.log("Email submitted:", email);
+    if (!email) return;
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("https://sheetdb.io/api/v1/lflhlaw3h4ppo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data: [
+            {
+              Email: email,
+              Timestamp: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+            }
+          ]
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        console.error("Submission failed");
+      }
+    } catch (error) {
+      console.error("Error submitting waitlist:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -473,13 +499,15 @@ export function CinematicHero({
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="flex-1 bg-black/40 border border-white/20 text-white placeholder:text-white/50 focus:border-white/40 focus:ring-1 focus:ring-white/20 h-12 px-4 rounded-xl backdrop-blur-sm outline-none text-sm"
+                    disabled={isSubmitting}
+                    className="flex-1 bg-black/40 border border-white/20 text-white placeholder:text-white/50 focus:border-white/40 focus:ring-1 focus:ring-white/20 h-12 px-4 rounded-xl backdrop-blur-sm outline-none text-sm disabled:opacity-50"
                   />
                   <button
                     type="submit"
-                    className="h-12 px-6 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/25 text-sm whitespace-nowrap"
+                    disabled={isSubmitting}
+                    className="h-12 px-6 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/25 text-sm whitespace-nowrap disabled:opacity-50"
                   >
-                    Join Waitlist
+                    {isSubmitting ? "Joining..." : "Join Waitlist"}
                   </button>
                 </div>
               </form>
