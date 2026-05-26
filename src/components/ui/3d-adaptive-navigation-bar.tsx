@@ -26,7 +26,6 @@ export const PillBase: React.FC<PillBaseProps> = ({ activeSection, setActiveSect
     { label: 'Home', id: 'home' },
     { label: 'Team', id: 'team' },
     { label: 'Vision', id: 'vision' },
-    { label: 'Contact', id: 'contact' },
   ]
 
   // Spring animations for smooth motion
@@ -37,7 +36,7 @@ export const PillBase: React.FC<PillBaseProps> = ({ activeSection, setActiveSect
   useEffect(() => {
     if (hovering) {
       setExpanded(true)
-      pillWidth.set(580)
+      pillWidth.set(440)
       if (hoverTimeoutRef.current) {
         clearTimeout(hoverTimeoutRef.current)
       }

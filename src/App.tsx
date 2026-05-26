@@ -37,8 +37,8 @@ function App() {
       </div>
 
       {/* Keep CinematicHero mounted and hide it to prevent React unmounting errors with GSAP ScrollTrigger pinning */}
-      <div style={{ display: (activeSection === "team" || activeSection === "vision") ? "none" : "block" }}>
-        <CinematicHero />
+      <div style={{ display: activeSection === "home" ? "block" : "none" }}>
+        <CinematicHero activeSection={activeSection} />
       </div>
 
       {/* Render Team Page when active */}

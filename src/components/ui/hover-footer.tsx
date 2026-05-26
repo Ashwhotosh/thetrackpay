@@ -180,13 +180,13 @@ export function HoverFooter({ activeSection, setActiveSection }: HoverFooterProp
           {/* Quick Links */}
           <div>
             <h4 className="text-white text-sm uppercase tracking-wider font-bold mb-6">Navigation</h4>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-3 text-sm font-medium">
               <li>
                 <button 
                   onClick={() => handleNav("home")}
                   className="text-neutral-400 hover:text-indigo-400 transition-colors text-left"
                 >
-                  Solution
+                  Home
                 </button>
               </li>
               <li>
@@ -194,23 +194,15 @@ export function HoverFooter({ activeSection, setActiveSection }: HoverFooterProp
                   onClick={() => handleNav("team")}
                   className="text-neutral-400 hover:text-indigo-400 transition-colors text-left"
                 >
-                  Our Vision (Team)
+                  Team
                 </button>
               </li>
               <li>
                 <button 
-                  onClick={() => handleNav("vision", "security")}
+                  onClick={() => handleNav("vision")}
                   className="text-neutral-400 hover:text-indigo-400 transition-colors text-left"
                 >
-                  Security Hub
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => handleNav("home")}
-                  className="text-neutral-400 hover:text-indigo-400 transition-colors text-left"
-                >
-                  Waitlist Access
+                  Vision
                 </button>
               </li>
             </ul>
@@ -222,14 +214,14 @@ export function HoverFooter({ activeSection, setActiveSection }: HoverFooterProp
             <ul className="space-y-4 text-sm">
               <li className="flex items-center space-x-3">
                 <Mail size={16} className="text-indigo-400" />
-                <a href="mailto:contact@trackpay.com" className="text-neutral-400 hover:text-indigo-400 transition-colors">
-                  contact@trackpay.com
+                <a href="mailto:founder@thetrackpay.com" className="text-neutral-400 hover:text-indigo-400 transition-colors">
+                  founder@thetrackpay.com
                 </a>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={16} className="text-indigo-400" />
-                <a href="mailto:support@trackpay.com" className="text-neutral-400 hover:text-indigo-400 transition-colors">
-                  support@trackpay.com
+                <a href="mailto:thetrackpay@gmail.com" className="text-neutral-400 hover:text-indigo-400 transition-colors">
+                  thetrackpay@gmail.com
                 </a>
               </li>
             </ul>
@@ -281,11 +273,11 @@ export function HoverFooter({ activeSection, setActiveSection }: HoverFooterProp
 
           {/* Legal Links */}
           <div className="flex space-x-4 order-1 md:order-2">
-            <a href="#" className="hover:text-indigo-400 transition-colors">Privacy Policy</a>
+            <span className="text-neutral-600 cursor-not-allowed select-none" title="Coming Soon">Privacy Policy</span>
             <span>|</span>
             <a href="#" className="hover:text-indigo-400 transition-colors">Terms of Service</a>
             <span>|</span>
-            <a href="#" className="hover:text-indigo-400 transition-colors">Security Manifesto</a>
+            <span className="text-neutral-600 cursor-not-allowed select-none" title="Coming Soon">Security Manifesto</span>
           </div>
 
           {/* Social icons */}

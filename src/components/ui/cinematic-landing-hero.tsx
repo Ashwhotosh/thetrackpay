@@ -196,6 +196,7 @@ export interface CinematicHeroProps extends React.HTMLAttributes<HTMLDivElement>
   metricLabel?: string;
   ctaHeading?: string;
   ctaDescription?: string;
+  activeSection?: string;
 }
 
 export function CinematicHero({ 
@@ -208,6 +209,7 @@ export function CinematicHero({
   metricLabel = "Total Spent",
   ctaHeading = "Control your movement.",
   ctaDescription = "Join the modern financial ecosystem built to track, analyze, and save automatically.",
+  activeSection = "home",
   className, 
   ...props 
 }: CinematicHeroProps) {
@@ -268,6 +270,8 @@ export function CinematicHero({
 
   // 1. Mouse Tracking Parallax and Glow Effects
   useEffect(() => {
+    if (activeSection !== "home") return;
+
     const handleMouseMove = (e: MouseEvent) => {
       if (window.scrollY > window.innerHeight * 2) return;
 
@@ -300,10 +304,12 @@ export function CinematicHero({
       window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(requestRef.current);
     };
-  }, []);
+  }, [activeSection]);
 
   // 2. Complex Cinematic Scroll Timeline with Custom Data Triggers
   useEffect(() => {
+    if (activeSection !== "home") return;
+
     const isMobile = window.innerWidth < 768;
 
     const ctx = gsap.context(() => {
@@ -406,7 +412,20 @@ export function CinematicHero({
     return () => {
       ctx.revert();
     };
-  }, [metricValue, cOuter]); 
+  }, [metricValue, cOuter, activeSection]);
+
+  // 3. Force ScrollTrigger refresh on active section change to prevent blank screen issue
+  useEffect(() => {
+    if (activeSection === "home") {
+      window.scrollTo(0, 0);
+      
+      const timer = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [activeSection]); 
 
   return (
     <div
