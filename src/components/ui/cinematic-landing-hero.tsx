@@ -217,6 +217,7 @@ export function CinematicHero({
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const calculateTimeLeft = () => {
     const targetDate = new Date("2026-10-01T00:00:00+05:30");
@@ -250,7 +251,9 @@ export function CinematicHero({
     if (!email) return;
 
     setIsSubmitting(true);
+    setSubmitError(null);
     try {
+      const timestampVal = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
       const response = await fetch("https://sheetdb.io/api/v1/lflhlaw3h4ppo", {
         method: "POST",
         headers: {
@@ -260,7 +263,9 @@ export function CinematicHero({
           data: [
             {
               Email: email,
-              Timestamp: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+              email: email,
+              Timestamp: timestampVal,
+              timestamp: timestampVal
             }
           ]
         }),
@@ -268,11 +273,15 @@ export function CinematicHero({
 
       if (response.ok) {
         setIsSubmitted(true);
+        alert("🎉 Success! You have been successfully added to the TrackPay waitlist.");
       } else {
-        console.error("Submission failed");
+        const errorText = await response.text();
+        console.error("Submission failed response:", errorText);
+        setSubmitError("Failed to submit. Please ensure your Google Sheet has 'Email' and 'Timestamp' columns in the first row.");
       }
     } catch (error) {
       console.error("Error submitting waitlist:", error);
+      setSubmitError("Network error. Please check your connection and try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -504,6 +513,12 @@ export function CinematicHero({
                   </button>
                 </div>
               </form>
+
+              {submitError && (
+                <p className="text-red-400 text-xs font-semibold text-center mt-2 animate-pulse mb-4">
+                  ⚠️ {submitError}
+                </p>
+              )}
 
               <div className="flex items-center justify-center gap-3 mb-6">
                 <div className="flex -space-x-2">
