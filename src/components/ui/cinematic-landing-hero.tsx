@@ -201,8 +201,8 @@ export interface CinematicHeroProps extends React.HTMLAttributes<HTMLDivElement>
 
 export function CinematicHero({ 
   brandName = "Trackpay",
-  tagline1 = "Track the flow of money,",
-  tagline2 = "Redefining the future of payments.",
+  tagline1 = "TrackPay | TheTrackPay,",
+  tagline2 = "Track the flow of money.",
   cardHeading = "Intelligence in every scroll.",
   cardDescription = <>Watch your financial health in real-time. From spending alerts to bill insights, our UI is built to turn complex data into simple, actionable steps.</>,
   metricValue = 1219,
