@@ -1,0 +1,5 @@
+# robots.txt for https://www.thetrackpay.com/
+User-agent: *
+Allow: /
+
+Sitemap: https://www.thetrackpay.com/sitemap.xml
