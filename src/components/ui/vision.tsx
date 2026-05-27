@@ -134,23 +134,8 @@ export default function VisionPage() {
         .to(leftTrackRef.current, { y: "-180vh", duration: 1.5, ease: "power2.in" }, 9.0)
         .to(mockupRef.current, { autoAlpha: 0, y: -150, scale: 0.9, duration: 2 }, 9.0);
 
-      // SECTION 2: Horizontal scroll override for Team Manifesto
-      if (teamTrackRef.current && section2Ref.current) {
-        const amountToScroll = teamTrackRef.current.scrollWidth - window.innerWidth + 200;
-        
-        gsap.to(teamTrackRef.current, {
-          x: () => -amountToScroll,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section2Ref.current,
-            start: "top top",
-            end: () => `+=${amountToScroll}`,
-            pin: true,
-            scrub: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-      }
+      // SECTION 2: Horizontal scroll override for Team Manifesto removed (cards are now static)
+
 
       // SECTION 3: SVG Lock hook animation on scroll reveal
       if (lockHookRef.current && securityRef.current) {
@@ -587,7 +572,7 @@ export default function VisionPage() {
       </section>
 
       {/* SECTION 2: THE VISION & ENGINEERING POWERHOUSE (THE TEAM) */}
-      <section ref={section2Ref} className="bg-slate-900/30 border-y border-white/5 min-h-screen flex flex-col justify-center overflow-hidden py-24 relative">
+      <section ref={section2Ref} className="bg-slate-900/30 border-y border-white/5 py-24 relative">
         <div className="max-w-7xl mx-auto px-6 w-full mb-16 space-y-8">
           
           {/* IITM Nirmaan Badge */}
@@ -608,13 +593,13 @@ export default function VisionPage() {
           </blockquote>
         </div>
 
-        {/* Horizontal scroll track */}
-        <div className="w-full flex items-center">
-          <div ref={teamTrackRef} className="flex gap-8 px-6 md:px-12 will-change-transform">
+        {/* Static Grid of Team Cards */}
+        <div className="max-w-7xl mx-auto px-6 w-full flex items-center justify-center">
+          <div ref={teamTrackRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full justify-center">
             {teamMembers.map((member) => (
               <div 
                 key={member.name}
-                className="team-card-wrapper w-[280px] md:w-[320px] shrink-0 group bg-neutral-900/60 rounded-3xl p-6 border border-white/5 transition-all duration-300 hover:border-indigo-500/30 hover:shadow-[0_10px_30px_rgba(99,102,241,0.1)]"
+                className="team-card-wrapper w-full group bg-neutral-900/60 rounded-3xl p-6 border border-white/5 transition-all duration-300 hover:border-indigo-500/30 hover:shadow-[0_10px_30px_rgba(99,102,241,0.1)]"
               >
                 <div className="relative w-full h-[260px] rounded-2xl overflow-hidden mb-6 bg-neutral-800">
                   <img 

@@ -40,7 +40,7 @@ export const TextHoverEffect = ({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
-      className={cn("select-none uppercase cursor-pointer", className)}
+      className={cn("select-none uppercase cursor-pointer pointer-events-auto", className)}
     >
       <defs>
         <linearGradient
@@ -88,7 +88,7 @@ export const TextHoverEffect = ({
         textAnchor="middle"
         dominantBaseline="middle"
         strokeWidth="0.3"
-        className="fill-transparent stroke-neutral-900 font-[helvetica] text-7xl font-bold"
+        className="fill-transparent stroke-white/[0.08] font-[helvetica] text-7xl font-bold"
         style={{ opacity: hovered ? 0.7 : 0.15 }}
       >
         {text}
@@ -324,7 +324,7 @@ export function HoverFooter({ activeSection, setActiveSection }: HoverFooterProp
 
       {/* SVG Text Hover Effect (glowing background text) */}
       <div className="lg:flex hidden h-[22rem] -mt-36 -mb-28 justify-center select-none pointer-events-none">
-        <TextHoverEffect text="TRACKPAY" className="z-0" />
+        <TextHoverEffect text="TRACKPAY" className="z-0 pointer-events-auto" />
       </div>
 
       <FooterBackgroundGradient />
