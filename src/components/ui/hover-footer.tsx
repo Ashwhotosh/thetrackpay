@@ -131,7 +131,7 @@ export const TextHoverEffect = ({
 export const FooterBackgroundGradient = () => {
   return (
     <div
-      className="absolute inset-0 z-0 pointer-events-none"
+      className="absolute inset-0 -z-10 pointer-events-none"
       style={{
         background:
           "radial-gradient(120% 120% at 50% 100%, #020617 40%, rgba(99, 102, 241, 0.08) 100%)",
@@ -323,7 +323,7 @@ export function HoverFooter({ activeSection, setActiveSection }: HoverFooterProp
       </div>
 
       {/* SVG Text Hover Effect (glowing background text) */}
-      <div className="lg:flex hidden h-[22rem] -mt-36 -mb-28 justify-center select-none pointer-events-none">
+      <div className="lg:flex hidden h-[22rem] -mt-36 -mb-28 justify-center select-none pointer-events-none relative z-[1]">
         <TextHoverEffect text="TRACKPAY" className="z-0 pointer-events-auto" />
       </div>
 
