@@ -37,28 +37,34 @@ const pillars: PillarData[] = [
 
 const teamMembers = [
   {
-    image: "/image/Team/Prathamesh.png",
-    name: "Prathamesh & Sarthak",
-    role: "Core Developers",
-    focus: "High-speed backend integrations & bank aggregation",
-  },
-  {
-    image: "/image/Team/Shaurya.jpg",
-    name: "Shaurya",
-    role: "Lead Designer",
-    focus: "Ultra-premium UI/UX design framework",
+    image: "/image/Team/Ashutosh.png",
+    name: "Ashutosh",
+    role: "Founder & CEO",
+    focus: "Product vision & intelligent money network",
   },
   {
     image: "/image/Team/Siddhi.jpg",
     name: "Siddhi",
-    role: "Researcher",
-    focus: "Behavioral finance trends & AI training models",
+    role: "Cofounder & Finance Head",
+    focus: "Behavioral finance trends & financial strategy",
   },
   {
-    image: "/image/Team/Ashutosh.png",
-    name: "Ashutosh",
-    role: "Founder",
-    focus: "Product vision & intelligent money network",
+    image: "/image/Team/Sarthak.jpg",
+    name: "Sarthak",
+    role: "Cofounder & Tech Head",
+    focus: "High-speed backend integrations & system architecture",
+  },
+  {
+    image: "/image/Team/Prathamesh.png",
+    name: "Prathamesh",
+    role: "Cofounder & AIML/Networking Head",
+    focus: "AIML training models, security & bank aggregation",
+  },
+  {
+    image: "/image/Team/Shaurya.jpg",
+    name: "Shaurya",
+    role: "Cofounder & Application Head",
+    focus: "Ultra-premium UI/UX design framework & application architecture",
   },
 ];
 
