@@ -323,7 +323,7 @@ export function HoverFooter({ activeSection, setActiveSection }: HoverFooterProp
       </div>
 
       {/* SVG Text Hover Effect (glowing background text) */}
-      <div className="lg:flex hidden h-[22rem] -mt-36 -mb-28 justify-center select-none pointer-events-none relative z-[1]">
+      <div className="lg:flex hidden h-[12rem] mt-6 justify-center select-none pointer-events-none relative z-[1]">
         <TextHoverEffect text="TRACKPAY" className="z-0 pointer-events-auto" />
       </div>
 
