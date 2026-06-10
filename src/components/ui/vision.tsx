@@ -318,77 +318,159 @@ export default function VisionPage() {
                     }}
                     className="iphone-screen-1 absolute inset-0 flex flex-col justify-between py-2 transition-all duration-500 ease-in-out"
                   >
-                    {/* Dashboard Header */}
-                    <div className="flex justify-between items-center mb-1">
-                      <div>
-                        <span className="text-[10px] text-neutral-400 block">Total Balance</span>
-                        <div className="text-2xl font-bold tracking-tight text-white">₹12,45,680</div>
-                      </div>
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-bold text-xs shadow-md border border-white/10">
-                        A
-                      </div>
-                    </div>
-
-                    {/* SVG Connector Flow Graph */}
-                    <div className="relative w-full h-[180px] my-2 bg-neutral-900/30 rounded-2xl border border-white/5 overflow-hidden flex items-center justify-center">
-                      {/* SVG Connecting Dotted Lines */}
-                      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
-                        <path d="M 20 20 L 50 50" fill="none" stroke="rgba(99, 102, 241, 0.45)" strokeWidth="0.75" className="animate-dash" />
-                        <path d="M 80 20 L 50 50" fill="none" stroke="rgba(99, 102, 241, 0.45)" strokeWidth="0.75" className="animate-dash" />
-                        <path d="M 50 82 L 50 50" fill="none" stroke="rgba(99, 102, 241, 0.45)" strokeWidth="0.75" className="animate-dash" />
-                      </svg>
-
-                      {/* Central Node (Trackpay Logo) */}
-                      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-600 to-purple-700 flex items-center justify-center border border-indigo-400/40 shadow-[0_0_20px_rgba(99,102,241,0.5)] animate-pulse-glow">
-                          <span className="font-bold text-sm tracking-widest text-white">TP</span>
+                    {/* Holographic Credit Card Header */}
+                    <div className="relative w-full h-[142px] bg-gradient-to-br from-[#0a153a] via-[#160f38] to-[#040812] rounded-2xl border border-white/15 p-4 flex flex-col justify-between overflow-hidden shadow-2xl">
+                      {/* Abstract holographic mesh background accent */}
+                      <div className="absolute -right-8 -top-8 w-24 h-24 bg-indigo-500/20 rounded-full blur-2xl pointer-events-none" />
+                      <div className="absolute -left-10 -bottom-10 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl pointer-events-none" />
+                      
+                      <div className="flex justify-between items-start z-10">
+                        <div>
+                          <span className="text-[9px] text-indigo-300 font-bold uppercase tracking-wider block">Net Worth Console</span>
+                          <div className="text-2xl font-extrabold tracking-tight text-white mt-1">₹12,45,680</div>
+                        </div>
+                        {/* Metallic chip icon */}
+                        <div className="flex items-center gap-2">
+                          <svg className="w-8 h-6 text-indigo-400 opacity-90" viewBox="0 0 24 18" fill="currentColor">
+                            <rect width="24" height="18" rx="3.5" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" strokeWidth="0.5" />
+                            <rect x="2.5" y="3.5" width="7.5" height="11" rx="1.5" fill="#f59e0b" opacity="0.85" />
+                            <line x1="10" y1="5.5" x2="16" y2="5.5" stroke="rgba(255,255,255,0.4)" strokeWidth="0.75" />
+                            <line x1="10" y1="9" x2="16" y2="9" stroke="rgba(255,255,255,0.4)" strokeWidth="0.75" />
+                            <line x1="10" y1="12.5" x2="16" y2="12.5" stroke="rgba(255,255,255,0.4)" strokeWidth="0.75" />
+                            <path d="M19 6 C21 9, 21 11, 19 14" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="0.75" strokeLinecap="round" />
+                          </svg>
                         </div>
                       </div>
 
-                      {/* Bank 1 Node (HDFC) */}
-                      <div className="absolute left-[20%] top-[20%] -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center">
-                        <div className="w-8 h-8 rounded-lg bg-neutral-900 border border-white/10 flex items-center justify-center shadow-md">
-                          <span className="text-[8px] font-extrabold text-blue-400">HDFC</span>
+                      <div className="flex justify-between items-end z-10 text-[9px] font-medium text-neutral-400">
+                        <div>
+                          <span className="font-mono tracking-widest text-white/90 block">••••  ••••  ••••  5680</span>
+                          <span className="block mt-1 text-[8px] text-indigo-300/60 uppercase tracking-widest font-semibold">Ashutosh Singh</span>
                         </div>
-                      </div>
-
-                      {/* Bank 2 Node (Zerodha) */}
-                      <div className="absolute left-[80%] top-[20%] -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center">
-                        <div className="w-8 h-8 rounded-lg bg-neutral-900 border border-white/10 flex items-center justify-center shadow-md">
-                          <span className="text-[8px] font-extrabold text-indigo-400">KITE</span>
-                        </div>
-                      </div>
-
-                      {/* Bank 3 Node (SBI) */}
-                      <div className="absolute left-[50%] top-[82%] -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center">
-                        <div className="w-8 h-8 rounded-lg bg-neutral-900 border border-white/10 flex items-center justify-center shadow-md">
-                          <span className="text-[8px] font-extrabold text-emerald-400">SBI</span>
+                        <div className="flex -space-x-1.5 opacity-90">
+                          <div className="w-4.5 h-4.5 rounded-full bg-indigo-500 mix-blend-screen" />
+                          <div className="w-4.5 h-4.5 rounded-full bg-purple-500 mix-blend-screen" />
                         </div>
                       </div>
                     </div>
 
-                    {/* Bank Accounts List */}
-                    <div className="space-y-1.5 flex-1 overflow-y-auto pr-1">
-                      <div className="bg-neutral-900/60 border border-white/5 p-2 rounded-xl flex items-center justify-between text-xs transition-colors hover:bg-neutral-900">
+                    {/* Section Divider */}
+                    <div className="flex justify-between items-center my-2 px-0.5">
+                      <span className="text-[9px] uppercase font-extrabold tracking-widest text-indigo-400">Aggregated Accounts</span>
+                      <span className="text-[9px] text-emerald-400 flex items-center gap-1 font-semibold">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Connected
+                      </span>
+                    </div>
+
+                    {/* Glassmorphic Bank Stream Cards */}
+                    <div className="space-y-1.5 flex-1 overflow-y-auto pr-0.5">
+                      {/* HDFC Card */}
+                      <div className="bg-[#0b0d19]/80 border border-white/5 p-2.5 rounded-xl flex items-center justify-between text-xs transition-all duration-300 hover:border-indigo-500/20 hover:bg-[#0f1122]">
                         <div className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-blue-400" />
-                          <span className="text-neutral-400 font-medium">HDFC Savings</span>
+                          <div className="w-7 h-7 rounded-lg bg-blue-600/10 border border-blue-500/20 flex items-center justify-center font-black text-[9px] text-blue-400 shadow-inner">
+                            HDFC
+                          </div>
+                          <div>
+                            <span className="text-white font-bold block text-[11px]">HDFC Savings</span>
+                            <span className="text-[8px] text-neutral-500 block">xxxx 9021</span>
+                          </div>
                         </div>
-                        <span className="text-white font-bold">₹4,50,000</span>
+                        
+                        {/* Live Upward Sparkline */}
+                        <div className="w-12 h-6 flex items-center justify-center">
+                          <svg className="w-full h-full" viewBox="0 0 50 20">
+                            <defs>
+                              <linearGradient id="sparkline-green" x1="0" y1="1" x2="0" y2="0">
+                                <stop offset="0%" stopColor="#10b981" stopOpacity="0" />
+                                <stop offset="100%" stopColor="#10b981" stopOpacity="0.2" />
+                              </linearGradient>
+                            </defs>
+                            <path d="M 2 16 Q 12 12, 22 14 T 48 4" fill="none" stroke="#10b981" strokeWidth="1.5" strokeLinecap="round" />
+                            <path d="M 2 16 Q 12 12, 22 14 T 48 4 L 48 20 L 2 20 Z" fill="url(#sparkline-green)" opacity="0.5" />
+                          </svg>
+                        </div>
+                        
+                        <span className="text-white font-bold text-right text-[11px] block">
+                          ₹4,50,000
+                          <span className="text-[8px] text-emerald-400 block font-normal">+₹45k</span>
+                        </span>
                       </div>
-                      <div className="bg-neutral-900/60 border border-white/5 p-2 rounded-xl flex items-center justify-between text-xs transition-colors hover:bg-neutral-900">
+
+                      {/* Zerodha Card */}
+                      <div className="bg-[#0b0d19]/80 border border-white/5 p-2.5 rounded-xl flex items-center justify-between text-xs transition-all duration-300 hover:border-indigo-500/20 hover:bg-[#0f1122]">
                         <div className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-indigo-400" />
-                          <span className="text-neutral-400 font-medium">Zerodha Mutual</span>
+                          <div className="w-7 h-7 rounded-lg bg-indigo-600/10 border border-indigo-500/20 flex items-center justify-center font-black text-[8px] text-indigo-400 shadow-inner">
+                            KITE
+                          </div>
+                          <div>
+                            <span className="text-white font-bold block text-[11px]">Zerodha Mutual</span>
+                            <span className="text-[8px] text-neutral-500 block">Holdings</span>
+                          </div>
                         </div>
-                        <span className="text-white font-bold">₹7,20,680</span>
+
+                        {/* Live Growing Sparkline */}
+                        <div className="w-12 h-6 flex items-center justify-center">
+                          <svg className="w-full h-full" viewBox="0 0 50 20">
+                            <defs>
+                              <linearGradient id="sparkline-indigo" x1="0" y1="1" x2="0" y2="0">
+                                <stop offset="0%" stopColor="#6366f1" stopOpacity="0" />
+                                <stop offset="100%" stopColor="#6366f1" stopOpacity="0.2" />
+                              </linearGradient>
+                            </defs>
+                            <path d="M 2 18 Q 15 15, 25 7 T 48 2" fill="none" stroke="#6366f1" strokeWidth="1.5" strokeLinecap="round" />
+                            <path d="M 2 18 Q 15 15, 25 7 T 48 2 L 48 20 L 2 20 Z" fill="url(#sparkline-indigo)" opacity="0.5" />
+                          </svg>
+                        </div>
+
+                        <span className="text-white font-bold text-right text-[11px] block">
+                          ₹7,20,680
+                          <span className="text-[8px] text-emerald-400 block font-normal">+₹112k</span>
+                        </span>
                       </div>
-                      <div className="bg-neutral-900/60 border border-white/5 p-2 rounded-xl flex items-center justify-between text-xs transition-colors hover:bg-neutral-900">
+
+                      {/* SBI Credit Card */}
+                      <div className="bg-[#0b0d19]/80 border border-white/5 p-2.5 rounded-xl flex items-center justify-between text-xs transition-all duration-300 hover:border-indigo-500/20 hover:bg-[#0f1122]">
                         <div className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-emerald-400" />
-                          <span className="text-neutral-400 font-medium">SBI Credit Card</span>
+                          <div className="w-7 h-7 rounded-lg bg-rose-600/10 border border-rose-500/20 flex items-center justify-center font-black text-[9px] text-rose-400 shadow-inner">
+                            SBI
+                          </div>
+                          <div>
+                            <span className="text-white font-bold block text-[11px]">SBI Card</span>
+                            <span className="text-[8px] text-neutral-500 block">xxxx 2185</span>
+                          </div>
                         </div>
-                        <span className="text-rose-400 font-bold">-₹25,000</span>
+
+                        {/* Liability Sparkline */}
+                        <div className="w-12 h-6 flex items-center justify-center">
+                          <svg className="w-full h-full" viewBox="0 0 50 20">
+                            <defs>
+                              <linearGradient id="sparkline-rose" x1="0" y1="1" x2="0" y2="0">
+                                <stop offset="0%" stopColor="#f43f5e" stopOpacity="0" />
+                                <stop offset="100%" stopColor="#f43f5e" stopOpacity="0.2" />
+                              </linearGradient>
+                            </defs>
+                            <path d="M 2 5 Q 15 15, 28 17 T 48 10" fill="none" stroke="#f43f5e" strokeWidth="1.5" strokeLinecap="round" />
+                            <path d="M 2 5 Q 15 15, 28 17 T 48 10 L 48 20 L 2 20 Z" fill="url(#sparkline-rose)" opacity="0.5" />
+                          </svg>
+                        </div>
+
+                        <span className="text-rose-400 font-bold text-right text-[11px] block">
+                          -₹25,000
+                          <span className="text-[8px] text-rose-400/60 block font-normal">Due in 5d</span>
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Safe Sync Security status */}
+                    <div className="bg-[#080912] border border-white/5 rounded-xl p-2 flex items-center gap-2.5 mt-2">
+                      <div className="w-6.5 h-6.5 rounded-lg bg-indigo-500/10 border border-indigo-500/25 flex items-center justify-center text-indigo-400 flex-shrink-0">
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[8.5px] font-bold text-white uppercase tracking-wider">Consent Aggregator Active</p>
+                        <p className="text-[7.5px] text-neutral-400 truncate">AES-256 encrypted connections enabled</p>
                       </div>
                     </div>
                   </div>
@@ -402,53 +484,63 @@ export default function VisionPage() {
                     }}
                     className="iphone-screen-2 absolute inset-0 flex flex-col justify-between py-2 transition-all duration-500 ease-in-out"
                   >
-                    {/* Header */}
-                    <div className="flex items-center gap-2.5 pb-2 border-b border-white/5">
-                      <div className="w-8 h-8 rounded-full bg-indigo-950 border border-indigo-500/30 flex items-center justify-center animate-pulse-glow">
-                        <svg className="w-4 h-4 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 21l8.982-11.725h-8.98L10.207 3 1.225 14.725h8.588z" />
-                        </svg>
+                    {/* Header: AI Agent Status bar */}
+                    <div className="flex items-center justify-between pb-2 border-b border-white/5">
+                      <div className="flex items-center gap-2.5">
+                        {/* Dynamic Avatar with rotating gradient ring */}
+                        <div className="relative w-8 h-8 rounded-full bg-[#0b0c1b] flex items-center justify-center border border-indigo-500/30 shadow-[0_0_10px_rgba(99,102,241,0.2)]">
+                          <span className="absolute inset-0 rounded-full border border-indigo-400/20 animate-ping" />
+                          <svg className="w-4.5 h-4.5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 21l8.982-11.725h-8.98L10.207 3 1.225 14.725h8.588z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <span className="text-xs font-extrabold text-white block">Trackpay AI</span>
+                          <span className="text-[8px] text-emerald-400 font-semibold block flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Active Optimizer
+                          </span>
+                        </div>
                       </div>
-                      <div>
-                        <span className="text-xs font-bold text-white block">Trackpay AI</span>
-                        <span className="text-[9px] text-emerald-400 font-semibold block flex items-center gap-1">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Active Optimizer
-                        </span>
-                      </div>
+                      
+                      {/* Sub-badge */}
+                      <span className="text-[8px] bg-indigo-500/10 border border-indigo-500/35 px-2 py-0.5 rounded-full text-indigo-300 font-bold tracking-wide">
+                        L3 Core
+                      </span>
                     </div>
 
-                    {/* Chat Messages */}
-                    <div className="flex-1 overflow-y-auto space-y-3 py-3 pr-1 text-[11px] leading-relaxed">
-                      {/* AI message 1 */}
-                      <div className="bg-neutral-900/50 border border-white/5 p-2.5 rounded-2xl rounded-tl-none space-y-1">
-                        <p className="text-neutral-300">
-                          Hi Ashutosh, I've consolidated your dashboard. I noticed a subscription leakage anomaly.
-                        </p>
-                      </div>
-
-                      {/* AI message 2 */}
-                      <div className="bg-neutral-900/50 border border-indigo-500/20 p-2.5 rounded-2xl rounded-tl-none space-y-1.5">
-                        <div className="flex items-center gap-1 text-indigo-400 font-bold text-[10px]">
+                    {/* Chat Messages / Feed */}
+                    <div className="flex-1 overflow-y-auto space-y-3.5 py-3 pr-0.5 text-[11px] leading-relaxed">
+                      {/* Message 1: Leakage anomaly warning card */}
+                      <div className="bg-[#0b0a17]/90 border border-indigo-500/20 p-3 rounded-2xl rounded-tl-none space-y-2 shadow-[0_5px_15px_rgba(99,102,241,0.08)]">
+                        <div className="flex items-center gap-1.5 text-indigo-400 font-extrabold text-[9px] uppercase tracking-wider">
                           <span>⚡ SUBSCRIPTION LEAK</span>
+                          <span className="ml-auto text-[8px] bg-indigo-500/15 text-indigo-300 border border-indigo-500/25 px-1.5 py-0.5 rounded-md">Critical</span>
                         </div>
-                        <p className="text-neutral-300">
-                          You paid <span className="text-white font-semibold">₹649</span> for Prime Video twice this month. Tap to auto-refund.
+                        <p className="text-neutral-300 text-[10.5px]">
+                          You paid <span className="text-white font-bold underline decoration-indigo-400">₹649</span> for Prime Video twice this month. Anomaly identified.
                         </p>
+                        <button className="w-full bg-indigo-600/20 hover:bg-indigo-600/35 border border-indigo-500/40 text-indigo-300 font-bold py-1 px-2.5 rounded-lg text-[9.5px] text-center transition-all">
+                          Claim Auto-Refund
+                        </button>
                       </div>
 
-                      {/* AI message 3 */}
-                      <div className="bg-neutral-900/50 border border-amber-500/20 p-2.5 rounded-2xl rounded-tl-none space-y-1.5">
-                        <div className="flex items-center gap-1 text-amber-400 font-bold text-[10px]">
-                          <span>💡 TAX OPTIMIZER</span>
+                      {/* Message 2: Tax Optimizer card */}
+                      <div className="bg-[#0b0914]/90 border border-amber-500/25 p-3 rounded-2xl rounded-tl-none space-y-2 shadow-[0_5px_15px_rgba(245,158,11,0.05)]">
+                        <div className="flex items-center gap-1.5 text-amber-400 font-extrabold text-[9px] uppercase tracking-wider">
+                          <span>💡 TAX SAVINGS</span>
+                          <span className="ml-auto text-[8.5px] text-emerald-400 font-bold">+₹13,500</span>
                         </div>
-                        <p className="text-neutral-300">
-                          Section 80C is full. Routing <span className="text-white font-semibold">₹45,000</span> to Section 80D (Health) saves <span className="text-emerald-400 font-bold">₹13,500</span> in tax today.
+                        <p className="text-neutral-300 text-[10.5px]">
+                          Section 80C limit reached. Routing <span className="text-white font-bold">₹45,000</span> to Section 80D (Health Insurance) saves tax today.
                         </p>
+                        <button className="w-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 font-bold py-1 px-2.5 rounded-lg text-[9.5px] text-center transition-all">
+                          Allocate Now
+                        </button>
                       </div>
 
-                      {/* AI Typing / Processing status */}
-                      <div className="flex items-center gap-1.5 text-neutral-500 text-[10px] pl-1.5">
-                        <span>Monitoring active anomalies</span>
+                      {/* Monitoring status */}
+                      <div className="flex items-center gap-2 text-neutral-500 text-[9px] pl-1 font-semibold uppercase tracking-wider">
+                        <span>Monitoring transaction pool</span>
                         <div className="flex gap-[3px] items-center">
                           <span className="w-1 h-1 rounded-full bg-neutral-500 animate-typing-1" />
                           <span className="w-1 h-1 rounded-full bg-neutral-500 animate-typing-2" />
@@ -457,22 +549,15 @@ export default function VisionPage() {
                       </div>
                     </div>
 
-                    {/* Action Footer */}
+                    {/* Bottom Assistant Input Capsule */}
                     <div className="space-y-1.5 border-t border-white/5 pt-2">
-                      <div className="flex gap-1.5">
-                        <button className="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-1.5 rounded-lg text-[10px] text-center transition-all shadow-[0_0_10px_rgba(99,102,241,0.3)]">
-                          Optimize Tax (80D)
-                        </button>
-                        <button className="flex-1 bg-neutral-900 hover:bg-neutral-800 border border-white/10 text-neutral-300 font-medium py-1.5 rounded-lg text-[10px] text-center transition-all">
-                          Dismiss Alert
-                        </button>
-                      </div>
-                      {/* Input pill */}
-                      <div className="w-full bg-neutral-900 border border-white/5 rounded-full px-3 py-1.5 flex items-center justify-between text-[10px] text-neutral-500">
-                        <span>Ask AI Agent anything...</span>
-                        <svg className="w-3.5 h-3.5 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                        </svg>
+                      <div className="w-full bg-[#0b0c16] border border-white/5 rounded-full px-3 py-2 flex items-center justify-between text-[10px] text-neutral-400 shadow-inner">
+                        <span className="font-medium">Ask AI Agent anything...</span>
+                        <div className="flex items-center gap-2 text-neutral-500">
+                          <svg className="w-3.5 h-3.5 hover:text-indigo-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                          </svg>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -486,77 +571,100 @@ export default function VisionPage() {
                     }}
                     className="iphone-screen-3 absolute inset-0 flex flex-col justify-between py-2 transition-all duration-500 ease-in-out"
                   >
-                    {/* Header */}
-                    <div className="flex justify-between items-center mb-1">
+                    {/* Header: Family Budget Central */}
+                    <div className="flex justify-between items-center pb-2 border-b border-white/5">
                       <div>
-                        <span className="text-[9px] text-neutral-400 block uppercase tracking-wider font-semibold">UPI Family Circle</span>
-                        <span className="text-xl font-bold text-white">Family Budget</span>
+                        <span className="text-[9px] text-indigo-400 block uppercase tracking-wider font-extrabold">UPI Family Circle</span>
+                        <span className="text-sm font-extrabold text-white">Family Budget Pool</span>
                       </div>
-                      <div className="flex -space-x-1.5">
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 border border-neutral-950 flex items-center justify-center text-[9px] font-bold">P</div>
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 border border-neutral-950 flex items-center justify-center text-[9px] font-bold">S</div>
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-teal-500 border border-neutral-950 flex items-center justify-center text-[9px] font-bold">A</div>
-                      </div>
-                    </div>
-
-                    {/* SVG Progress Budget Circle Ring */}
-                    <div className="relative w-full h-[150px] my-1 flex items-center justify-center bg-neutral-900/20 rounded-2xl border border-white/5">
-                      <svg className="w-[120px] h-[120px] transform -rotate-90" viewBox="0 0 100 100">
-                        {/* Background Circle */}
-                        <circle cx="50" cy="50" r="40" fill="none" stroke="#262626" strokeWidth="8" />
-                        {/* Foreground Progress Circle (68.4%) */}
-                        <circle
-                          cx="50"
-                          cy="50"
-                          r="40"
-                          fill="none"
-                          stroke="url(#budget-grad-vision)"
-                          strokeWidth="8"
-                          strokeDasharray="251.2"
-                          strokeDashoffset={251.2 - (251.2 * 68.4) / 100}
-                          strokeLinecap="round"
-                        />
-                        <defs>
-                          <linearGradient id="budget-grad-vision" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#6366f1" />
-                            <stop offset="100%" stopColor="#ec4899" />
-                          </linearGradient>
-                        </defs>
-                      </svg>
-                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-                        <span className="text-[10px] text-neutral-400">Total Spent</span>
-                        <span className="text-lg font-bold text-white">₹34,200</span>
-                        <span className="text-[9px] text-indigo-300 font-medium">Limit: ₹50,000</span>
-                      </div>
-                    </div>
-
-                    {/* Transaction History & Pending requests */}
-                    <div className="space-y-1.5 flex-1 overflow-y-auto pr-1">
-                      <span className="text-[9px] text-neutral-500 font-bold block uppercase tracking-wider">Pending Approvals</span>
                       
-                      {/* Request Card */}
-                      <div className="bg-neutral-900/70 border border-indigo-500/20 p-2 rounded-xl space-y-1.5">
-                        <div className="flex justify-between items-center text-[10px]">
-                          <span className="text-neutral-300 font-medium">Sarthak requests allowance</span>
-                          <span className="text-white font-bold">₹2,500</span>
+                      {/* Overlapping premium profile badges */}
+                      <div className="flex -space-x-2">
+                        <div className="w-6.5 h-6.5 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 border-2 border-[#02050d] flex items-center justify-center text-[9px] font-black text-white shadow-lg">P</div>
+                        <div className="w-6.5 h-6.5 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 border-2 border-[#02050d] flex items-center justify-center text-[9px] font-black text-white shadow-lg">S</div>
+                        <div className="w-6.5 h-6.5 rounded-full bg-gradient-to-br from-indigo-500 to-emerald-500 border-2 border-[#02050d] flex items-center justify-center text-[9px] font-black text-white shadow-lg">A</div>
+                      </div>
+                    </div>
+
+                    {/* Glowing Dial Budget Controller Container */}
+                    <div className="relative w-full h-[142px] my-2.5 flex items-center justify-between bg-gradient-to-tr from-[#0b0c16] to-[#14122b] rounded-2xl border border-white/5 shadow-2xl p-3">
+                      {/* SVG Circular Ring Chart (rotated) */}
+                      <div className="relative w-28 h-28 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                          {/* Inner soft drop shadow path */}
+                          <circle cx="50" cy="50" r="38" fill="none" stroke="#1c1936" strokeWidth="6" />
+                          <circle
+                            cx="50"
+                            cy="50"
+                            r="38"
+                            fill="none"
+                            stroke="url(#budget-grad-vision)"
+                            strokeWidth="7"
+                            strokeDasharray="238.76"
+                            strokeDashoffset={238.76 - (238.76 * 68.4) / 100}
+                            strokeLinecap="round"
+                            className="drop-shadow-[0_0_8px_rgba(99,102,241,0.5)]"
+                          />
+                          <defs>
+                            <linearGradient id="budget-grad-vision" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="#6366f1" />
+                              <stop offset="50%" stopColor="#a855f7" />
+                              <stop offset="100%" stopColor="#ec4899" />
+                            </linearGradient>
+                          </defs>
+                        </svg>
+                        
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                          <span className="text-[14px] font-black text-white">68.4%</span>
+                          <span className="text-[8px] text-indigo-300 font-bold uppercase tracking-wider">Used</span>
                         </div>
-                        <div className="flex gap-1.5">
-                          <button className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-1 rounded-lg text-[9px] transition-all">
+                      </div>
+
+                      {/* Budget Details Table */}
+                      <div className="flex-1 pl-3.5 space-y-1.5">
+                        <div>
+                          <span className="text-[8px] text-neutral-400 block uppercase font-bold tracking-wider">Aggregate Pool</span>
+                          <span className="text-base font-extrabold text-white">₹34,200</span>
+                        </div>
+                        <div className="h-px bg-white/5 w-full" />
+                        <div className="flex justify-between text-[9px]">
+                          <div>
+                            <span className="text-neutral-500 block text-[8px]">Monthly Cap</span>
+                            <span className="text-white font-bold">₹50,000</span>
+                          </div>
+                          <div>
+                            <span className="text-neutral-500 block text-[8px]">Available</span>
+                            <span className="text-emerald-400 font-bold">₹15,800</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Pending Approvals List */}
+                    <div className="space-y-1.5 flex-1 overflow-y-auto pr-0.5">
+                      <span className="text-[9px] text-indigo-400 font-extrabold block uppercase tracking-widest px-0.5">Approval Stream</span>
+                      
+                      {/* Sliding Notification Card */}
+                      <div className="bg-[#0b0c16] border border-indigo-500/20 p-2.5 rounded-xl space-y-2 shadow-[0_4px_12px_rgba(99,102,241,0.05)]">
+                        <div className="flex justify-between items-start text-[10px]">
+                          <div className="flex items-center gap-1.5">
+                            <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-teal-500 flex items-center justify-center text-[8px] font-black text-white">S</div>
+                            <div>
+                              <span className="text-white font-bold block text-[10px]">Sarthak Singh</span>
+                              <span className="text-[8px] text-neutral-500 block">Allowance request</span>
+                            </div>
+                          </div>
+                          <span className="text-white font-black text-[11px] mt-0.5">₹2,500</span>
+                        </div>
+                        
+                        <div className="flex gap-2 pt-0.5">
+                          <button className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-1.5 rounded-lg text-[9px] text-center transition-all shadow-[0_0_8px_rgba(16,185,129,0.3)]">
                             Approve
                           </button>
-                          <button className="flex-1 bg-neutral-950 hover:bg-neutral-900 border border-white/5 text-neutral-400 py-1 rounded-lg text-[9px] transition-all">
+                          <button className="flex-1 bg-[#02050d] hover:bg-neutral-900 border border-white/5 text-neutral-400 py-1.5 rounded-lg text-[9px] text-center transition-all">
                             Decline
                           </button>
                         </div>
-                      </div>
-
-                      {/* Approved Feed Item */}
-                      <div className="bg-neutral-900/40 border border-white/5 p-1.5 rounded-xl flex items-center justify-between text-[10px]">
-                        <div className="flex items-center gap-1.5">
-                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                          <span className="text-neutral-400">Prathamesh Rent</span>
-                        </div>
-                        <span className="text-emerald-400 font-bold">+₹18,000</span>
                       </div>
                     </div>
                   </div>

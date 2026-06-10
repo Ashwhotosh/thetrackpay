@@ -220,6 +220,12 @@ export function HoverFooter({ activeSection, setActiveSection }: HoverFooterProp
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={16} className="text-indigo-400" />
+                <a href="mailto:cofounder@thetrackpay.com" className="text-neutral-400 hover:text-indigo-400 transition-colors">
+                  cofounder@thetrackpay.com
+                </a>
+              </li>
+              <li className="flex items-center space-x-3">
+                <Mail size={16} className="text-indigo-400" />
                 <a href="mailto:thetrackpay@gmail.com" className="text-neutral-400 hover:text-indigo-400 transition-colors">
                   thetrackpay@gmail.com
                 </a>
