@@ -338,16 +338,33 @@ export function CinematicHero({
   useEffect(() => {
     if (activeSection !== "home") return;
 
+    // Reset scroll BEFORE the ScrollTrigger below measures anything. The
+    // component stays mounted (display toggled, not unmounted) between
+    // sections, so a leftover scrollY from Team/Vision skews the "top top"
+    // pin calculation and can make the scrubbed timeline initialize mid-way
+    // through, snapping straight past the intro reveal instead of playing it.
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' as any });
+
+    // Defensively kill any trigger still tied to this container - guards
+    // against a stale instance lingering across the display-toggle cycle.
+    ScrollTrigger.getAll().forEach((st) => {
+      if (st.trigger === containerRef.current) st.kill();
+    });
+
     const isMobile = window.innerWidth < 768;
 
     const ctx = gsap.context(() => {
+      const nirmaanBadge = document.querySelector(".global-nirmaan-badge");
+
       // Intial Hidden States
-      gsap.set(".global-nirmaan-badge", { 
-        x: "calc(50vw - 50% - 24px)", 
-        y: "calc(50vh - 140px - 24px)", 
-        scale: 1.1, 
-        autoAlpha: 0 
-      });
+      if (nirmaanBadge) {
+        gsap.set(nirmaanBadge, { 
+          x: "calc(50vw - 50% - 24px)", 
+          y: "calc(50vh - 140px - 24px)", 
+          scale: 1.1, 
+          autoAlpha: 0 
+        });
+      }
       gsap.set(".text-track", { autoAlpha: 0, y: 60, scale: 0.85, filter: "blur(20px)", rotationX: -20 });
       gsap.set(".text-days", { autoAlpha: 1, clipPath: "inset(0 100% 0 0)" });
       gsap.set(".main-card", { y: window.innerHeight + 200, autoAlpha: 1 });
@@ -361,8 +378,10 @@ export function CinematicHero({
 
       // Intro Animations
       const introTl = gsap.timeline({ delay: 0.3 });
+      if (nirmaanBadge) {
+        introTl.to(nirmaanBadge, { duration: 1.8, autoAlpha: 1, ease: "expo.out" }, 0);
+      }
       introTl
-        .to(".global-nirmaan-badge", { duration: 1.8, autoAlpha: 1, ease: "expo.out" }, 0)
         .to(".text-track", { duration: 1.8, autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", rotationX: 0, ease: "expo.out" }, 0.15)
         .to(".text-days", { duration: 1.4, clipPath: "inset(0 0% 0 0)", ease: "power4.inOut" }, "-=1.0");
 
@@ -378,64 +397,78 @@ export function CinematicHero({
         },
       });
 
-      scrollTl
-        .to([".hero-text-wrapper", ".bg-grid-theme"], { scale: 1.15, filter: "blur(20px)", opacity: 0.2, ease: "power2.inOut", duration: 2 }, 0)
-        .to(".main-card", { y: 0, ease: "power3.inOut", duration: 2 }, 0)
-        .to(".global-nirmaan-badge", { x: 0, y: 0, scale: 1, ease: "power2.inOut", duration: 2 }, 0)
-        .to(".main-card", { width: "100%", height: "100%", borderRadius: "0px", ease: "power3.inOut", duration: 1.5 })
-        
-        // Bring Phone Mockup Viewport into focus
-        .fromTo(".mockup-scroll-wrapper",
-          { y: 300, z: -500, rotationX: 50, rotationY: -30, autoAlpha: 0, scale: 0.6 },
-          { y: 0, z: 0, rotationX: 0, rotationY: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 2.5 }, "-=0.8"
-        )
-        .fromTo(".phone-widget", { y: 40, autoAlpha: 0, scale: 0.95 }, { y: 0, autoAlpha: 1, scale: 1, stagger: 0.15, ease: "power2.out", duration: 1.5 }, "-=1.5")
-        
-        // Counter Currency Incrementor Animation
-        .to(".counter-val", { 
-          innerHTML: metricValue, 
-          snap: { innerHTML: 1 }, 
-          duration: 2.5, 
-          ease: "none",
-          onUpdate: function() {
-            const el = document.querySelector(".counter-val");
-            if(el) el.innerHTML = "₹" + Math.floor(Number(el.innerHTML)).toLocaleString("en-IN");
-          }
-        }, "-=1.8")
+      scrollTl.fromTo(".hero-text-wrapper", 
+        { scale: 1, filter: "blur(0px)", opacity: 1 },
+        { scale: 1.15, filter: "blur(20px)", opacity: 0.2, ease: "power2.inOut", duration: 2 }, 
+        0
+      );
+      scrollTl.fromTo(".bg-grid-theme", 
+        { scale: 1, filter: "blur(0px)", opacity: 0.5 },
+        { scale: 1.15, filter: "blur(20px)", opacity: 0.2, ease: "power2.inOut", duration: 2 }, 
+        0
+      );
+      scrollTl.to(".main-card", { y: 0, ease: "power3.inOut", duration: 2 }, 0);
 
-        // Interactive Donut Chart Multi-segment dynamic growth on scroll
-        // Segment 1 (Purple - 50%): Circumference * (1 - 0.50)
-        .to(".ring-p", { strokeDashoffset: cOuter * 0.50, duration: 1.5, ease: "power2.out" }, "-=2.2")
-        // Segment 2 (Blue - 35%): Circumference * (1 - 0.35)
-        .to(".ring-b", { strokeDashoffset: cOuter * 0.65, duration: 1.5, ease: "power2.out" }, "-=1.8")
-        // Segment 3 (Yellow - 15%): Circumference * (1 - 0.15)
-        .to(".ring-y", { strokeDashoffset: cOuter * 0.85, duration: 1.5, ease: "power2.out" }, "-=1.4")
+      if (nirmaanBadge) {
+        scrollTl.to(nirmaanBadge, { x: 0, y: 0, scale: 1, ease: "power2.inOut", duration: 2 }, 0);
+      }
 
-        // Badges and description alignments
-        .fromTo(".floating-badge", { y: 100, autoAlpha: 0, scale: 0.7, rotationZ: -10 }, { y: 0, autoAlpha: 1, scale: 1, rotationZ: 0, ease: "back.out(1.2)", duration: 1.5, stagger: 0.2 }, "-=2.0")
-        .fromTo(".card-left-text", { x: -50, autoAlpha: 0 }, { x: 0, autoAlpha: 1, ease: "power4.out", duration: 1.5 }, "-=1.5")
-        .fromTo(".card-right-text", { x: 50, autoAlpha: 0, scale: 0.8 }, { x: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 1.5 }, "<")
+      scrollTl.to(".main-card", { width: "100%", height: "100%", borderRadius: "0px", ease: "power3.inOut", duration: 1.5 });
         
-        .to({}, { duration: 2.5 })
-        .set(".hero-text-wrapper", { autoAlpha: 0 })
-        .set(".cta-wrapper", { autoAlpha: 1 }) 
-        .to({}, { duration: 1.5 })
-        .to([".mockup-scroll-wrapper", ".floating-badge", ".card-left-text", ".card-right-text"], {
-          scale: 0.9, y: -40, z: -200, autoAlpha: 0, ease: "power3.in", duration: 1.2, stagger: 0.05,
-        })
-        
-        // Responsive card pullback out-animations
-        .to(".main-card", { 
-          width: isMobile ? "92vw" : "85vw", 
-          height: isMobile ? "92vh" : "85vh", 
-          borderRadius: isMobile ? "32px" : "40px", 
-          ease: "expo.inOut", 
-          duration: 1.8 
-        }, "pullback") 
-        .to(".cta-wrapper", { scale: 1, filter: "blur(0px)", ease: "expo.inOut", duration: 1.8 }, "pullback")
-        .to(".main-card", { y: -window.innerHeight - 300, ease: "power3.in", duration: 1.5 });
+      // Bring Phone Mockup Viewport into focus
+      scrollTl.fromTo(".mockup-scroll-wrapper",
+        { y: 300, z: -500, rotationX: 50, rotationY: -30, autoAlpha: 0, scale: 0.6 },
+        { y: 0, z: 0, rotationX: 0, rotationY: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 2.5 }, "-=0.8"
+      );
+      scrollTl.fromTo(".phone-widget", { y: 40, autoAlpha: 0, scale: 0.95 }, { y: 0, autoAlpha: 1, scale: 1, stagger: 0.15, ease: "power2.out", duration: 1.5 }, "-=1.5");
+      
+      // Counter Currency Incrementor Animation
+      scrollTl.to(".counter-val", { 
+        innerHTML: metricValue, 
+        snap: { innerHTML: 1 }, 
+        duration: 2.5, 
+        ease: "none",
+        onUpdate: function() {
+          const el = document.querySelector(".counter-val");
+          if(el) el.innerHTML = "₹" + Math.floor(Number(el.innerHTML)).toLocaleString("en-IN");
+        }
+      }, "-=1.8");
+
+      // Interactive Donut Chart Multi-segment dynamic growth on scroll
+      scrollTl.to(".ring-p", { strokeDashoffset: cOuter * 0.50, duration: 1.5, ease: "power2.out" }, "-=2.2");
+      scrollTl.to(".ring-b", { strokeDashoffset: cOuter * 0.65, duration: 1.5, ease: "power2.out" }, "-=1.8");
+      scrollTl.to(".ring-y", { strokeDashoffset: cOuter * 0.85, duration: 1.5, ease: "power2.out" }, "-=1.4");
+
+      // Badges and description alignments
+      scrollTl.fromTo(".floating-badge", { y: 100, autoAlpha: 0, scale: 0.7, rotationZ: -10 }, { y: 0, autoAlpha: 1, scale: 1, rotationZ: 0, ease: "back.out(1.2)", duration: 1.5, stagger: 0.2 }, "-=2.0");
+      scrollTl.fromTo(".card-left-text", { x: -50, autoAlpha: 0 }, { x: 0, autoAlpha: 1, ease: "power4.out", duration: 1.5 }, "-=1.5");
+      scrollTl.fromTo(".card-right-text", { x: 50, autoAlpha: 0, scale: 0.8 }, { x: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 1.5 }, "<");
+      
+      scrollTl.to({}, { duration: 2.5 });
+      scrollTl.set(".hero-text-wrapper", { autoAlpha: 0 });
+      scrollTl.set(".cta-wrapper", { autoAlpha: 1 }); 
+      scrollTl.to({}, { duration: 1.5 });
+      scrollTl.to([".mockup-scroll-wrapper", ".floating-badge", ".card-left-text", ".card-right-text"], {
+        scale: 0.9, y: -40, z: -200, autoAlpha: 0, ease: "power3.in", duration: 1.2, stagger: 0.05,
+      });
+      
+      // Responsive card pullback out-animations
+      scrollTl.to(".main-card", { 
+        width: isMobile ? "92vw" : "85vw", 
+        height: isMobile ? "92vh" : "85vh", 
+        borderRadius: isMobile ? "32px" : "40px", 
+        ease: "expo.inOut", 
+        duration: 1.8 
+      }, "pullback"); 
+      scrollTl.to(".cta-wrapper", { scale: 1, filter: "blur(0px)", ease: "expo.inOut", duration: 1.8 }, "pullback");
+      scrollTl.to(".main-card", { y: -window.innerHeight - 300, ease: "power3.in", duration: 1.5 });
 
     }, containerRef);
+
+    // Recalculate trigger start/end now that scroll is at 0 and the section
+    // is actually visible again, so the pin math matches reality instead of
+    // whatever was measured while the container was still display:none.
+    ScrollTrigger.refresh();
 
     return () => {
       ctx.revert();
@@ -445,7 +478,7 @@ export function CinematicHero({
   // 3. Force ScrollTrigger refresh on active section change to prevent blank screen issue
   useEffect(() => {
     if (activeSection === "home") {
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' as any });
       
       const timer = setTimeout(() => {
         ScrollTrigger.refresh();
@@ -466,7 +499,7 @@ export function CinematicHero({
 
       <div className="film-grain" aria-hidden="true" />
       <div className="bg-grid-theme absolute inset-0 z-0 pointer-events-none opacity-50" aria-hidden="true" />
-      <TubesCursor />
+      {activeSection === "home" && <TubesCursor />}
 
       {/* BACKGROUND LAYER: Hero Typography */}
       <div className="hero-text-wrapper absolute z-10 flex flex-col items-center justify-center text-center w-screen px-4 will-change-transform transform-style-3d">

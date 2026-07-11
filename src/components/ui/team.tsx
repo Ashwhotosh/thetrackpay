@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Marquee } from "./marquee";
+import { cn } from "@/lib/utils";
 
 const teamMembers = [
   {
@@ -29,6 +31,8 @@ const teamMembers = [
 ];
 
 export default function TeamPage() {
+  const [hoveredMember, setHoveredMember] = useState<string | null>(null);
+
   return (
     <section className="relative w-full overflow-hidden bg-slate-950 py-12 md:py-24 text-white">
       <div>
@@ -91,29 +95,43 @@ export default function TeamPage() {
           <div className="pointer-events-none absolute top-0 left-0 z-10 h-full w-32 bg-gradient-to-r from-slate-950 to-transparent" />
           <div className="pointer-events-none absolute top-0 right-0 z-10 h-full w-32 bg-gradient-to-l from-slate-950 to-transparent" />
 
-          <Marquee className="[--gap:1.5rem]" pauseOnHover>
-            {teamMembers.map((member) => (
-              <div
-                className="group flex w-64 shrink-0 flex-col px-2"
-                key={member.name}
-              >
-                <div className="relative h-80 w-full overflow-hidden rounded-2xl bg-neutral-800">
-                  <img
-                    alt={member.name}
-                    className="absolute inset-0 h-full w-full object-cover grayscale transition-all duration-300 hover:grayscale-0"
-                    src={member.image}
-                  />
-                  <div className="absolute bottom-2 inset-x-2 rounded-lg bg-neutral-800/80 p-3 backdrop-blur-sm border border-white/5">
-                    <h3 className="font-semibold text-neutral-100">
-                      {member.name}
-                    </h3>
-                    <p className="text-neutral-400 text-sm">
-                      {member.role}
-                    </p>
+          <Marquee className="[--gap:1.5rem]" paused={hoveredMember !== null}>
+            {teamMembers.map((member) => {
+              const isHovered = hoveredMember === member.name;
+              const isSubdued = hoveredMember !== null && !isHovered;
+
+              return (
+                <div
+                  className={cn(
+                    "flex w-64 shrink-0 flex-col px-2 transition-all duration-300 ease-out",
+                    isHovered && "scale-105",
+                    isSubdued && "scale-95 opacity-40"
+                  )}
+                  key={member.name}
+                  onMouseEnter={() => setHoveredMember(member.name)}
+                  onMouseLeave={() => setHoveredMember(null)}
+                >
+                  <div className="relative h-80 w-full overflow-hidden rounded-2xl bg-neutral-800">
+                    <img
+                      alt={member.name}
+                      className={cn(
+                        "absolute inset-0 h-full w-full object-cover transition-all duration-300",
+                        isHovered ? "grayscale-0" : "grayscale"
+                      )}
+                      src={member.image}
+                    />
+                    <div className="absolute bottom-2 inset-x-2 rounded-lg bg-neutral-800/80 p-3 backdrop-blur-sm border border-white/5">
+                      <h3 className="font-semibold text-neutral-100">
+                        {member.name}
+                      </h3>
+                      <p className="text-neutral-400 text-sm">
+                        {member.role}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </Marquee>
         </div>
 
