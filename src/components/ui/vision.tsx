@@ -171,7 +171,7 @@ export default function VisionPage() {
     <div className="bg-slate-950 text-white min-h-screen font-sans overflow-x-hidden relative">
       
       {/* INTRO HEADER SECTION */}
-      <section className="w-full pt-32 pb-16 bg-slate-950 relative z-10">
+      <section className="w-full pt-32 pb-4 bg-slate-950 relative z-10">
         <div className="max-w-7xl mx-auto px-6">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-xs font-semibold tracking-wider uppercase w-fit mb-6">
             <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
@@ -188,10 +188,10 @@ export default function VisionPage() {
 
       {/* SECTION 1: THE SOLUTION ARCHITECTURE */}
       <section ref={section1Ref} className="w-full h-screen flex items-center justify-center relative overflow-hidden bg-slate-950">
-        <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full relative z-10">
+        <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch h-full relative z-10">
           
           {/* Left Column Viewport */}
-          <div className="h-[60vh] overflow-hidden relative flex flex-col justify-center w-full">
+          <div className="h-[60vh] overflow-hidden relative flex flex-col justify-center w-full self-start mt-4 lg:mt-8">
             <div ref={leftTrackRef} className="absolute top-0 inset-x-0 w-full space-y-0 flex flex-col pointer-events-none">
 
               {/* Pillar 1 */}
