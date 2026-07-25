@@ -161,7 +161,12 @@ export function HoverFooter({ activeSection, setActiveSection }: HoverFooterProp
   };
 
   return (
-    <footer className="bg-slate-950/80 border-t border-white/5 relative h-fit overflow-hidden pb-12 mt-12">
+    <footer
+      className={cn(
+        "bg-slate-950/80 border-t border-white/5 relative h-fit overflow-hidden mt-12",
+        activeSection === "home" ? "pb-24" : "pb-12"
+      )}
+    >
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-8 z-10 relative flex flex-col gap-12">
         
         {/* Top Row: Brand & Quick Navigation */}
@@ -198,11 +203,19 @@ export function HoverFooter({ activeSection, setActiveSection }: HoverFooterProp
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => handleNav("vision")}
                   className="text-neutral-400 hover:text-indigo-400 transition-colors text-left"
                 >
                   Vision
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav("product")}
+                  className="text-neutral-400 hover:text-indigo-400 transition-colors text-left"
+                >
+                  Product
                 </button>
               </li>
             </ul>

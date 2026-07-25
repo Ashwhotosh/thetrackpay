@@ -3,6 +3,8 @@ import { PillBase } from "./components/ui/3d-adaptive-navigation-bar";
 import { CinematicHero } from "./components/ui/cinematic-landing-hero";
 import TeamPage from "./components/ui/team";
 import VisionPage from "./components/ui/vision";
+import ProductPage from "./components/ui/product";
+import { DemoLaunchBar } from "./components/ui/demo-launch-bar";
 import { HoverFooter } from "./components/ui/hover-footer";
 
 function App() {
@@ -41,6 +43,11 @@ function App() {
         <CinematicHero activeSection={activeSection} />
       </div>
 
+      {/* Fixed bottom ticker announcing the demo video, home page only */}
+      {activeSection === "home" && (
+        <DemoLaunchBar onNavigate={() => setActiveSection("product")} />
+      )}
+
       {/* Render Team Page when active */}
       {activeSection === "team" && (
         <div className="animate-fade-in">
@@ -52,6 +59,13 @@ function App() {
       {activeSection === "vision" && (
         <div className="animate-fade-in">
           <VisionPage />
+        </div>
+      )}
+
+      {/* Render Product Page when active */}
+      {activeSection === "product" && (
+        <div className="animate-fade-in">
+          <ProductPage />
         </div>
       )}
 
