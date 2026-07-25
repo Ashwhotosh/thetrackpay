@@ -6,12 +6,33 @@ import VisionPage from "./components/ui/vision";
 import ProductPage from "./components/ui/product";
 import { DemoLaunchBar } from "./components/ui/demo-launch-bar";
 import { HoverFooter } from "./components/ui/hover-footer";
+import { SECTION_PATHS, SECTION_TITLES, sectionFromPath } from "./lib/routes";
 
 function App() {
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSectionState] = useState(() =>
+    sectionFromPath(window.location.pathname)
+  );
+
+  const navigate = (section: string) => {
+    setActiveSectionState(section);
+    const path = SECTION_PATHS[section] ?? "/";
+    if (window.location.pathname !== path) {
+      window.history.pushState({ section }, "", path);
+    }
+  };
+
+  // Keep activeSection in sync with browser back/forward navigation
+  useEffect(() => {
+    const onPopState = () => {
+      setActiveSectionState(sectionFromPath(window.location.pathname));
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' as any });
+    document.title = SECTION_TITLES[activeSection] ?? SECTION_TITLES.home;
   }, [activeSection]);
 
   return (
@@ -35,7 +56,7 @@ function App() {
 
       {/* Global Glassy Navbar Overlay */}
       <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 pointer-events-auto">
-        <PillBase activeSection={activeSection} setActiveSection={setActiveSection} />
+        <PillBase activeSection={activeSection} setActiveSection={navigate} />
       </div>
 
       {/* Keep CinematicHero mounted and hide it to prevent React unmounting errors with GSAP ScrollTrigger pinning */}
@@ -45,7 +66,7 @@ function App() {
 
       {/* Fixed bottom ticker announcing the demo video, home page only */}
       {activeSection === "home" && (
-        <DemoLaunchBar onNavigate={() => setActiveSection("product")} />
+        <DemoLaunchBar onNavigate={() => navigate("product")} />
       )}
 
       {/* Render Team Page when active */}
@@ -70,7 +91,7 @@ function App() {
       )}
 
       {/* Global Footer */}
-      <HoverFooter activeSection={activeSection} setActiveSection={setActiveSection} />
+      <HoverFooter activeSection={activeSection} setActiveSection={navigate} />
     </div>
   );
 }
