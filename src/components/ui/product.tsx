@@ -1,7 +1,5 @@
-const FORM_VIEW_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSdotxmx5_Y1rMOGRm4g6cZo4Yu-EGzARM3ZbMp7udmM9Mcgng/viewform";
-const FORM_EMBED_URL = `${FORM_VIEW_URL}?embedded=true`;
-const FORM_SHORT_URL = "https://forms.gle/NkUAG8xJiwSAKzQe9";
+import FeedbackForm from "./feedback-form";
+
 const YOUTUBE_EMBED_URL = "https://www.youtube.com/embed/xsLY5tpoz8Q";
 
 export default function ProductPage() {
@@ -63,29 +61,7 @@ export default function ProductPage() {
         </div>
 
         {/* Form */}
-        <div className="mt-8 overflow-hidden rounded-3xl border border-white/5 bg-neutral-900/40 p-2 md:p-3">
-          <div className="overflow-hidden rounded-2xl bg-white">
-            <iframe
-              className="w-full"
-              src={FORM_EMBED_URL}
-              title="TrackPay Feedback Survey"
-              style={{ height: "1400px", minHeight: "1200px" }}
-            >
-              Loading…
-            </iframe>
-          </div>
-        </div>
-
-        <div className="mt-4 text-center">
-          <a
-            href={FORM_SHORT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-neutral-500 underline decoration-white/10 underline-offset-4 transition-colors hover:text-indigo-400"
-          >
-            Trouble loading? Open the form in a new tab ↗
-          </a>
-        </div>
+        <FeedbackForm />
       </div>
     </section>
   );
