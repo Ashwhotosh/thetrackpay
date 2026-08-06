@@ -218,6 +218,14 @@ export function HoverFooter({ activeSection, setActiveSection }: HoverFooterProp
                   Product
                 </button>
               </li>
+              <li>
+                <button
+                  onClick={() => handleNav("survey")}
+                  className="text-neutral-400 hover:text-indigo-400 transition-colors text-left"
+                >
+                  Survey
+                </button>
+              </li>
             </ul>
           </div>
 

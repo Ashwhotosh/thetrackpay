@@ -219,6 +219,25 @@ export function CinematicHero({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
+  // Gate expensive visual effects so they only run where the device can afford
+  // them. This is the single biggest performance win.
+  //  - enableHeavyFX: desktop mouse parallax + film-grain + scroll blur.
+  //  - enableTubes:  the continuous WebGL "tubes" cursor render loop. It's the
+  //    heaviest cost, so it's reserved for high-core desktops; typical laptops
+  //    keep the rest of the experience without the constant GPU drain.
+  const [{ enableHeavyFX, enableTubes }] = useState(() => {
+    if (typeof window === "undefined") return { enableHeavyFX: false, enableTubes: false };
+    try {
+      const desktop = window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const cores = (navigator as unknown as { hardwareConcurrency?: number }).hardwareConcurrency ?? 4;
+      const heavy = desktop && !reduced && cores >= 4;
+      return { enableHeavyFX: heavy, enableTubes: heavy && cores >= 8 };
+    } catch {
+      return { enableHeavyFX: false, enableTubes: false };
+    }
+  });
+
   const calculateTimeLeft = () => {
     const targetDate = new Date("2026-10-01T00:00:00+05:30");
     const now = new Date();
@@ -239,12 +258,16 @@ export function CinematicHero({
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
+    // The countdown only shows on the home CTA; don't tick (and re-render the
+    // whole mounted-but-hidden hero) while the user is on other sections.
+    if (activeSection !== "home") return;
+
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [activeSection]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -299,31 +322,31 @@ export function CinematicHero({
   // 1. Mouse Tracking Parallax and Glow Effects
   useEffect(() => {
     if (activeSection !== "home") return;
+    if (!enableHeavyFX) return; // skip per-frame parallax on mobile / low-end
+    if (!mockupRef.current) return;
+
+    // Create the tilt interpolators ONCE. gsap.quickTo reuses a single tween
+    // per property instead of spawning a new 1.2s tween on every mousemove
+    // (the old approach), which is dramatically cheaper and smoother.
+    const rotY = gsap.quickTo(mockupRef.current, "rotationY", { duration: 0.7, ease: "power3.out" });
+    const rotX = gsap.quickTo(mockupRef.current, "rotationX", { duration: 0.7, ease: "power3.out" });
 
     const handleMouseMove = (e: MouseEvent) => {
       if (window.scrollY > window.innerHeight * 2) return;
 
       cancelAnimationFrame(requestRef.current);
-      
+
       requestRef.current = requestAnimationFrame(() => {
-        if (mainCardRef.current && mockupRef.current) {
+        if (mainCardRef.current) {
           const rect = mainCardRef.current.getBoundingClientRect();
-          const mouseX = e.clientX - rect.left;
-          const mouseY = e.clientY - rect.top;
-          
-          mainCardRef.current.style.setProperty("--mouse-x", `${mouseX}px`);
-          mainCardRef.current.style.setProperty("--mouse-y", `${mouseY}px`);
-
-          const xVal = (e.clientX / window.innerWidth - 0.5) * 2;
-          const yVal = (e.clientY / window.innerHeight - 0.5) * 2;
-
-          gsap.to(mockupRef.current, {
-            rotationY: xVal * 12,
-            rotationX: -yVal * 12,
-            ease: "power3.out",
-            duration: 1.2,
-          });
+          mainCardRef.current.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+          mainCardRef.current.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
         }
+
+        const xVal = (e.clientX / window.innerWidth - 0.5) * 2;
+        const yVal = (e.clientY / window.innerHeight - 0.5) * 2;
+        rotY(xVal * 10);
+        rotX(-yVal * 10);
       });
     };
 
@@ -332,7 +355,7 @@ export function CinematicHero({
       window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(requestRef.current);
     };
-  }, [activeSection]);
+  }, [activeSection, enableHeavyFX]);
 
   // 2. Complex Cinematic Scroll Timeline with Custom Data Triggers
   useEffect(() => {
@@ -397,14 +420,17 @@ export function CinematicHero({
         },
       });
 
-      scrollTl.fromTo(".hero-text-wrapper", 
+      // NOTE: animating filter: blur() is very expensive to repaint every scroll
+      // frame. Keeping the max blur small (6px) plus fading opacity gives the
+      // same "recede" feel at a fraction of the paint cost.
+      scrollTl.fromTo(".hero-text-wrapper",
         { scale: 1, filter: "blur(0px)", opacity: 1 },
-        { scale: 1.15, filter: "blur(20px)", opacity: 0.2, ease: "power2.inOut", duration: 2 }, 
+        { scale: 1.15, filter: "blur(6px)", opacity: 0.2, ease: "power2.inOut", duration: 2 },
         0
       );
-      scrollTl.fromTo(".bg-grid-theme", 
+      scrollTl.fromTo(".bg-grid-theme",
         { scale: 1, filter: "blur(0px)", opacity: 0.5 },
-        { scale: 1.15, filter: "blur(20px)", opacity: 0.2, ease: "power2.inOut", duration: 2 }, 
+        { scale: 1.15, filter: "blur(6px)", opacity: 0.2, ease: "power2.inOut", duration: 2 },
         0
       );
       scrollTl.to(".main-card", { y: 0, ease: "power3.inOut", duration: 2 }, 0);
@@ -497,9 +523,9 @@ export function CinematicHero({
     >
       <style dangerouslySetInnerHTML={{ __html: INJECTED_STYLES }} />
 
-      <div className="film-grain" aria-hidden="true" />
+      {enableHeavyFX && <div className="film-grain" aria-hidden="true" />}
       <div className="bg-grid-theme absolute inset-0 z-0 pointer-events-none opacity-50" aria-hidden="true" />
-      {activeSection === "home" && <TubesCursor />}
+      {activeSection === "home" && enableTubes && <TubesCursor />}
 
       {/* BACKGROUND LAYER: Hero Typography */}
       <div className="hero-text-wrapper absolute z-10 flex flex-col items-center justify-center text-center w-screen px-4 will-change-transform transform-style-3d">

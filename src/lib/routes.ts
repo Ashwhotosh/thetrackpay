@@ -3,13 +3,15 @@ export const SECTION_PATHS: Record<string, string> = {
   team: "/team",
   vision: "/vision",
   product: "/product",
+  survey: "/survey",
 };
 
 export const SECTION_TITLES: Record<string, string> = {
   home: "TrackPay — Unified Money OS",
   team: "Meet the Founders — TrackPay",
   vision: "Our Vision — TrackPay",
-  product: "Product Demo — TrackPay",
+  product: "Product — Interactive Demo — TrackPay",
+  survey: "Share Your Feedback — TrackPay",
 };
 
 export function sectionFromPath(pathname: string): string {

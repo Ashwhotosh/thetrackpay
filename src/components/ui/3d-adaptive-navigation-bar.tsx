@@ -27,6 +27,7 @@ export const PillBase: React.FC<PillBaseProps> = ({ activeSection, setActiveSect
     { label: 'Team', id: 'team' },
     { label: 'Vision', id: 'vision' },
     { label: 'Product', id: 'product' },
+    { label: 'Survey', id: 'survey' },
   ]
 
   // Spring animations for smooth motion
@@ -37,7 +38,11 @@ export const PillBase: React.FC<PillBaseProps> = ({ activeSection, setActiveSect
   useEffect(() => {
     if (hovering) {
       setExpanded(true)
-      pillWidth.set(520)
+      // Cap the expanded width to the viewport so the centered pill never spills
+      // off-screen on phones (600px on a ~375px screen overflowed both edges and
+      // pushed the top bar out of view).
+      const vw = typeof window !== 'undefined' ? window.innerWidth : 600
+      pillWidth.set(Math.min(600, vw - 24))
       if (hoverTimeoutRef.current) {
         clearTimeout(hoverTimeoutRef.current)
       }

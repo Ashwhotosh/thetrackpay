@@ -4,6 +4,7 @@ import { CinematicHero } from "./components/ui/cinematic-landing-hero";
 import TeamPage from "./components/ui/team";
 import VisionPage from "./components/ui/vision";
 import ProductPage from "./components/ui/product";
+import SurveyPage from "./components/ui/survey";
 import { DemoLaunchBar } from "./components/ui/demo-launch-bar";
 import { HoverFooter } from "./components/ui/hover-footer";
 import { SECTION_PATHS, SECTION_TITLES, sectionFromPath } from "./lib/routes";
@@ -36,7 +37,7 @@ function App() {
   }, [activeSection]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white relative">
+    <div className="min-h-screen bg-slate-950 text-white relative overflow-x-hidden">
       {/* Global Nirmaan Pre-incubation Badge */}
       <div 
         className="global-nirmaan-badge fixed top-6 left-6 z-50 pointer-events-auto flex items-center gap-2 p-1.5 md:px-3.5 md:py-1.5 rounded-full border border-white/10"
@@ -64,9 +65,9 @@ function App() {
         <CinematicHero activeSection={activeSection} />
       </div>
 
-      {/* Fixed bottom ticker announcing the demo video, home page only */}
+      {/* Fixed bottom ticker announcing the demo video + feedback, home page only */}
       {activeSection === "home" && (
-        <DemoLaunchBar onNavigate={() => navigate("product")} />
+        <DemoLaunchBar onNavigate={() => navigate("survey")} />
       )}
 
       {/* Render Team Page when active */}
@@ -83,10 +84,17 @@ function App() {
         </div>
       )}
 
-      {/* Render Product Page when active */}
+      {/* Render Product Page (interactive demo) when active */}
       {activeSection === "product" && (
         <div className="animate-fade-in">
-          <ProductPage />
+          <ProductPage onNavigateToSurvey={() => navigate("survey")} />
+        </div>
+      )}
+
+      {/* Render Survey Page (demo video + feedback form) when active */}
+      {activeSection === "survey" && (
+        <div className="animate-fade-in">
+          <SurveyPage />
         </div>
       )}
 
