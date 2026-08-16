@@ -7,7 +7,7 @@ export const SECTION_PATHS: Record<string, string> = {
 };
 
 export const SECTION_TITLES: Record<string, string> = {
-  home: "TrackPay — Unified Money OS",
+  home: "TrackPay — The Payment App with Financial Intelligence for India",
   team: "Meet the Founders — TrackPay",
   vision: "Our Vision — TrackPay",
   product: "Product — Interactive Demo — TrackPay",
