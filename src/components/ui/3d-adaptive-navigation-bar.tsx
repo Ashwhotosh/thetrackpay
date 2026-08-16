@@ -22,12 +22,11 @@ export const PillBase: React.FC<PillBaseProps> = ({ activeSection, setActiveSect
   const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const prevSectionRef = useRef('home')
   
-  // NOTE: 'Product' is intentionally omitted here — the interactive prototype at
-  // /product is unlisted and reachable only via a direct link.
   const navItems: NavItem[] = [
     { label: 'Home', id: 'home' },
     { label: 'Team', id: 'team' },
     { label: 'Vision', id: 'vision' },
+    { label: 'Product', id: 'product' },
     { label: 'Survey', id: 'survey' },
   ]
 

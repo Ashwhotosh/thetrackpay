@@ -1,6 +1,6 @@
-# TrackPay — The Payment App with a Financial Intelligence Layer for India
+# TrackPay — Unified Money OS
 
-TrackPay is an ultra-premium, modern website built for the modern Indian user, serving as the central intelligence engine and portal for TrackPay — the payment app with a financial intelligence layer for India.
+TrackPay is an ultra-premium, modern website built for the modern Indian user, serving as the central intelligence engine and portal for the TrackPay Unified Money OS.
 
 ## 🚀 Key Features
 

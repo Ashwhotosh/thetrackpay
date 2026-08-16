@@ -19,7 +19,7 @@ export default function SurveyPage() {
             See TrackPay in Action.
           </h1>
           <p className="max-w-2xl text-lg font-light text-neutral-400 md:text-xl">
-            A first look at TrackPay — the payment app with a financial intelligence layer for India — then tell us what you think.
+            A first look at the Unified Money OS we're building — then tell us what you think.
             Your feedback directly shapes what ships next.
           </p>
         </div>

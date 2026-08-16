@@ -1,4 +1,4 @@
-/* Trackpay static demo - all data below is illustrative sample data. No network calls, no real money. */
+/* Trackpay static demo — all data below is illustrative sample data. No network calls, no real money. */
 (function () {
 "use strict";
 
@@ -77,8 +77,8 @@ var GOALS_INITIAL = [
 ];
 
 var OPPORTUNITIES_INITIAL = [
-  { id: 'o1', title: 'Rs 12,400 sitting idle - move it to a 7.1% Smart Save', amount: 12400, icon: 'sparkles', wrap: 'bg-blue-100 dark:bg-blue-900/30', color: 'text-blue-600 dark:text-blue-400', target: 'screen-smart-save' },
-  { id: 'o2', title: 'Netflix Premium price hike detected - Rs 149 more per month', amount: 149, icon: 'refresh-cw', wrap: 'bg-purple-100 dark:bg-purple-900/30', color: 'text-purple-600 dark:text-purple-400', target: 'screen-home' },
+  { id: 'o1', title: 'Rs 12,400 sitting idle — move it to a 7.1% Smart Save', amount: 12400, icon: 'sparkles', wrap: 'bg-blue-100 dark:bg-blue-900/30', color: 'text-blue-600 dark:text-blue-400', target: 'screen-smart-save' },
+  { id: 'o2', title: 'Netflix Premium price hike detected — Rs 149 more per month', amount: 149, icon: 'refresh-cw', wrap: 'bg-purple-100 dark:bg-purple-900/30', color: 'text-purple-600 dark:text-purple-400', target: 'screen-home' },
   { id: 'o3', title: '3% cashback available on your electricity bill', amount: 49, icon: 'zap', wrap: 'bg-amber-100 dark:bg-amber-900/30', color: 'text-amber-600 dark:text-amber-400', billKey: 'electricity' },
   { id: 'o4', title: 'Your credit score jumped 12 points this month', amount: null, icon: 'trending-up', wrap: 'bg-emerald-100 dark:bg-emerald-900/30', color: 'text-emerald-600 dark:text-emerald-400', target: 'screen-home' }
 ];
@@ -166,15 +166,15 @@ var PROFILE_MENU = [
 ];
 
 var CHAT_QA = [
-  { keys: ['cut back', 'save more', 'spending', 'where can i save'], reply: "Looking at your last 30 days: dining out is your biggest discretionary category at Rs 6,240 (18% of spend), followed by shopping at Rs 4,890. If you trimmed dining out by just 2 orders a week, that is about Rs 1,800/month back in your pocket - enough to fully fund your Emergency Fund goal 3 months sooner." },
+  { keys: ['cut back', 'save more', 'spending', 'where can i save'], reply: "Looking at your last 30 days: dining out is your biggest discretionary category at Rs 6,240 (18% of spend), followed by shopping at Rs 4,890. If you trimmed dining out by just 2 orders a week, that is about Rs 1,800/month back in your pocket — enough to fully fund your Emergency Fund goal 3 months sooner." },
   { keys: ['sip', 'invest', 'portfolio', 'allocation'], reply: "For a balanced profile, a good starting SIP split is 60% equity index funds, 25% flexi-cap, 15% debt/liquid funds for stability. On Rs 15,000/month that is roughly Rs 9,000 equity index, Rs 3,750 flexi-cap, and Rs 2,250 debt. Want me to build a goal-linked plan for this?" },
-  { keys: ['tax', 'regime', '80c'], reply: "Based on typical salaried income with home loan interest and 80C investments, the Old Regime usually wins once your deductions cross about Rs 3.5L/year. Without significant deductions, the New Regime's lower slabs tend to win. I would need your Form 16 details to give you an exact number - that is handled in the Tax Center in the full app." },
+  { keys: ['tax', 'regime', '80c'], reply: "Based on typical salaried income with home loan interest and 80C investments, the Old Regime usually wins once your deductions cross about Rs 3.5L/year. Without significant deductions, the New Regime's lower slabs tend to win. I would need your Form 16 details to give you an exact number — that is handled in the Tax Center in the full app." },
   { keys: ['afford', 'trip', 'travel', 'vacation'], reply: "Based on your current savings rate of about Rs 18,500/month and your existing goals, a Rs 60,000 trip is comfortably affordable within 4 months without touching your Emergency Fund. I would suggest setting up a dedicated Goal for it so it does not eat into other savings." },
   { keys: ['credit card', 'best card', 'reward'], reply: "Given your monthly spend pattern (groceries, dining, and online shopping being top categories), a card with strong cashback on those categories plus no/low annual fee would net you an estimated Rs 8,000-11,000/year in rewards. The full app compares live offers across issuers for this." },
   { keys: ['loan', 'emi', 'prepay'], reply: "On a Rs 10,00,000 loan at 9% for 5 years, your EMI works out to about Rs 20,760/month with total interest of about Rs 2,45,600. Prepaying even Rs 50,000 in year 1 can cut close to 4 months off your tenure and save meaningful interest." },
   { keys: ['insurance', 'cover', 'term'], reply: "A common rule of thumb is 10-15x your annual income in term cover. If your goals include dependents or a home loan, lean toward the higher end. Health cover is usually recommended at a minimum of Rs 10L per person in a metro city, ideally as a family floater." },
-  { keys: ['goal', 'plan', 'retire'], reply: "You currently have 3 active goals totalling about Rs 4,18,000 saved toward Rs 8,70,000 in targets. At your current combined SIP of Rs 31,000/month, you are broadly on track - the Europe Trip goal is the one slightly behind pace and could use an extra Rs 2,000/month to stay on schedule." },
-  { keys: ['hello', 'hi', 'hey'], reply: "Hey! I'm ArthaAI, your money assistant inside Trackpay. Ask me about your spending, savings, goals, taxes, or anything else - in the full app I read your real transaction history to answer these live." }
+  { keys: ['goal', 'plan', 'retire'], reply: "You currently have 3 active goals totalling about Rs 4,18,000 saved toward Rs 8,70,000 in targets. At your current combined SIP of Rs 31,000/month, you are broadly on track — the Europe Trip goal is the one slightly behind pace and could use an extra Rs 2,000/month to stay on schedule." },
+  { keys: ['hello', 'hi', 'hey'], reply: "Hey! I'm ArthaAI, your money assistant inside Trackpay. Ask me about your spending, savings, goals, taxes, or anything else — in the full app I read your real transaction history to answer these live." }
 ];
 var CHAT_SUGGESTIONS = [
   'Where can I cut back?',
@@ -342,7 +342,7 @@ function oppRowHtml(o) {
 function renderHome() {
   var wrap = qs('#home-for-you');
   if (state.activeOpportunities.length === 0) {
-    wrap.innerHTML = '<div class="text-center py-4 text-xs text-slate-400">All caught up - nothing new right now.</div>';
+    wrap.innerHTML = '<div class="text-center py-4 text-xs text-slate-400">All caught up — nothing new right now.</div>';
   } else {
     wrap.innerHTML = state.activeOpportunities.slice(0, 2).map(oppRowHtml).join('');
   }
@@ -1015,7 +1015,7 @@ function openQuickPay(merchant) {
   normalBtn.textContent = 'Pay';
   var mWrap = qs('#qp-merchant');
   if (merchant) {
-    qs('#qp-subtitle').textContent = 'Scanned - smart savings applied';
+    qs('#qp-subtitle').textContent = 'Scanned — smart savings applied';
     mWrap.classList.remove('hidden');
     mWrap.innerHTML = '<div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl shadow-lg ' + merchant.color + '">' + merchant.emoji + '</div>' +
       '<div class="text-center"><h2 class="text-lg font-bold">Paying ' + merchant.name + '</h2><p class="text-xs text-slate-400 dark:text-neutral-500 font-medium">' + merchant.upi + '</p>' +
@@ -1097,7 +1097,7 @@ function showQuickPaySuccess(paidAmount, saved, viaGiftCard) {
   qs('#qp-success').classList.remove('hidden');
   qs('#qp-success-title').textContent = 'Paid ' + inr(paidAmount);
   if (viaGiftCard) {
-    qs('#qp-success-sub').innerHTML = '<span class="text-emerald-600 dark:text-emerald-400 font-bold text-lg block mb-1">You saved ' + inr(saved) + ' 🎉</span>Paid via gift card instead of paying directly - an instant discount.';
+    qs('#qp-success-sub').innerHTML = '<span class="text-emerald-600 dark:text-emerald-400 font-bold text-lg block mb-1">You saved ' + inr(saved) + ' 🎉</span>Paid via gift card instead of paying directly — an instant discount.';
   } else {
     var leftOnTable = state.qpNudge ? state.qpNudge.youSave : 0;
     qs('#qp-success-sub').textContent = leftOnTable > 0 ? ('Paid the full amount. You left ' + inr(leftOnTable) + ' of gift-card savings on the table.') : 'Payment complete.';
@@ -1149,7 +1149,7 @@ function createGoal() {
   var months = Math.max(1, Math.round((new Date(date) - new Date()) / (1000 * 60 * 60 * 24 * 30)));
   var sip = Math.round(target / months);
   state.goals.push({ id: 'go' + Date.now(), name: name, target: target, progress: 0, sip: sip, date: date });
-  toast('Goal created - SIP of ' + inr(sip) + '/mo suggested');
+  toast('Goal created — SIP of ' + inr(sip) + '/mo suggested');
   qs('#gn-name').value = ''; qs('#gn-target').value = ''; qs('#gn-date').value = '';
   qs('#gn-preview').classList.add('hidden');
   navigate('screen-goals', { push: false });
@@ -1728,7 +1728,7 @@ function syncThemeUI() {
 
 /* -------------------------------------------------------------------- AI CHAT */
 var CHAT_DEMO_SEED = [
-  { role: 'assistant', text: "Hi, I'm ArthaAI - your money assistant inside Trackpay. I read your real transactions, goals and bills to give live advice. Here's a sample of how a conversation with me looks:" },
+  { role: 'assistant', text: "Hi, I'm ArthaAI — your money assistant inside Trackpay. I read your real transactions, goals and bills to give live advice. Here's a sample of how a conversation with me looks:" },
   { role: 'user', text: 'Should I buy the new iPhone 17 right now?' },
   { role: 'assistant', text: "Let's check the numbers first. Your Federal Bank savings sits at &#8377;49,484 with about &#8377;35,880 left after this month's essentials, and your Emergency Fund goal is at 82% (&#8377;2,45,000 of &#8377;3,00,000). The iPhone 17 (128GB) is priced at &#8377;79,900 on Apple's store &mdash; buying it outright today would eat almost 60% of your free cash and stall that goal by about 2 months.<br/><br/>My take: it's affordable, but not urgent. I'd wait a few weeks and pay through card offers instead of savings. Want me to find the cheapest way to get it?" },
   { role: 'user', text: 'Yes, where can I get it the cheapest?' },
@@ -1775,7 +1775,7 @@ function getAiReply(text) {
       if (lower.indexOf(qa.keys[j]) !== -1) return qa.reply;
     }
   }
-  return "This is a static demo, so I cannot read live account data here - but in the full Trackpay app I would pull your real transactions to answer that precisely. Here is the kind of insight I would give: your top spending category this month is dining out, and moving idle savings into a higher-yield option could add roughly Rs 4,000/month.";
+  return "This is a static demo, so I cannot read live account data here — but in the full Trackpay app I would pull your real transactions to answer that precisely. Here is the kind of insight I would give: your top spending category this month is dining out, and moving idle savings into a higher-yield option could add roughly Rs 4,000/month.";
 }
 function sendAiMessage() {
   var input = qs('#ai-input');
@@ -1865,7 +1865,7 @@ window.TP = {
   resetChat: resetChat, sendAiMessage: sendAiMessage, sendAiPreset: sendAiPreset
 };
 
-/* HTML markup calls these by bare name (onclick="navigate(...)" etc) - mirror
+/* HTML markup calls these by bare name (onclick="navigate(...)" etc) — mirror
    every exported function onto the global scope so both TP.x() and x() work. */
 Object.keys(window.TP).forEach(function (k) { window[k] = window.TP[k]; });
 
