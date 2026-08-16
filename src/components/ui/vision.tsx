@@ -175,10 +175,10 @@ export default function VisionPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-xs font-semibold tracking-wider uppercase w-fit mb-6">
             <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
-            Unified Money OS
+            Financial Intelligence Layer
           </div>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-white via-neutral-100 to-neutral-400 bg-clip-text text-transparent mb-6 max-w-4xl">
-            The Architecture of a True Money OS.
+            The Architecture of Financial Intelligence.
           </h1>
           <p className="text-neutral-400 text-lg md:text-xl font-light max-w-2xl">
             Standard apps just move money. Trackpay acts as the central intelligence engine for your entire financial ecosystem.
@@ -754,7 +754,7 @@ export default function VisionPage() {
             <div className="space-y-2">
               <h3 className="text-xl font-bold">AES-256 Bit Encryption</h3>
               <p className="text-neutral-400 text-sm leading-relaxed">
-                Every byte of data synced to your Unified Money OS is guarded with the same cryptographic protocols used by major global banking networks.
+                Every byte of data synced to TrackPay is guarded with the same cryptographic protocols used by major global banking networks.
               </p>
             </div>
           </div>

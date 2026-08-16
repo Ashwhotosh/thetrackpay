@@ -1,10 +1,8 @@
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ScanLine, Sparkles, Users, PieChart, ArrowRight, Lock } from "lucide-react";
+import { ScanLine, Sparkles, Users, PieChart, ArrowRight } from "lucide-react";
 
 const DEMO_URL = "/trackpay-demo.html";
-const ACCESS_CODE = "20252026";
-const UNLOCK_KEY = "tp_prototype_unlocked";
 
 const features = [
   { icon: ScanLine, title: "Scan & Pay", desc: "UPI-native flows built for how India actually pays." },
@@ -13,7 +11,7 @@ const features = [
   { icon: Users, title: "Social & Splits", desc: "Settle bills and track friends without the awkward chase." },
 ];
 
-// Reusable entrance transition matching the site's cinematic feel
+// Reusable entrance transition matching the site's feel
 const rise = {
   hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
   show: { opacity: 1, y: 0, filter: "blur(0px)" },
@@ -25,36 +23,6 @@ interface ProductPageProps {
 
 export default function ProductPage({ onNavigateToSurvey }: ProductPageProps) {
   const [loaded, setLoaded] = useState(false);
-
-  // Access gate for the live prototype. Soft client-side lock (not security —
-  // the demo files are public); persists once unlocked so the code isn't asked
-  // again on this device.
-  const [unlocked, setUnlocked] = useState(() => {
-    if (typeof window === "undefined") return false;
-    try {
-      return window.localStorage.getItem(UNLOCK_KEY) === "1";
-    } catch {
-      return false;
-    }
-  });
-  const [codeInput, setCodeInput] = useState("");
-  const [error, setError] = useState(false);
-
-  const handleUnlock = (e: FormEvent) => {
-    e.preventDefault();
-    if (codeInput.trim() === ACCESS_CODE) {
-      setUnlocked(true);
-      setError(false);
-      try {
-        window.localStorage.setItem(UNLOCK_KEY, "1");
-      } catch {
-        /* ignore storage errors */
-      }
-    } else {
-      setError(true);
-      setCodeInput("");
-    }
-  };
 
   return (
     <section className="relative w-full overflow-hidden bg-slate-950 pt-32 pb-24 text-white">
@@ -95,7 +63,8 @@ export default function ProductPage({ onNavigateToSurvey }: ProductPageProps) {
             className="max-w-2xl text-lg font-light text-neutral-400 md:text-xl"
           >
             This isn't a video — it's the real thing. Tap around the phone below to explore
-            the Unified Money OS: payments, insights, social splits and an AI advisor, all in one place.
+            TrackPay, the payment app with a financial intelligence layer for India: payments,
+            insights, social splits and an AI advisor, all in one place.
           </motion.p>
         </motion.div>
 
@@ -128,98 +97,20 @@ export default function ProductPage({ onNavigateToSurvey }: ProductPageProps) {
             {/* The embedded interactive app — height tracks the viewport on
                 mobile so the whole phone fits without page scroll. */}
             <div className="relative h-[68vh] max-h-[760px] min-h-[460px] overflow-hidden rounded-[2rem] bg-slate-900/40 sm:h-[720px] lg:h-[780px]">
-              {unlocked ? (
-                <>
-                  {!loaded && (
-                    <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 bg-slate-950/60">
-                      <div className="h-10 w-10 animate-spin rounded-full border-2 border-white/10 border-t-indigo-400" />
-                      <p className="text-xs font-medium tracking-wide text-neutral-500">Loading the live demo…</p>
-                    </div>
-                  )}
-                  <iframe
-                    src={DEMO_URL}
-                    title="TrackPay Interactive Demo"
-                    loading="lazy"
-                    onLoad={() => setLoaded(true)}
-                    className="h-full w-full border-0"
-                    allow="clipboard-write"
-                  />
-                </>
-              ) : (
-                /* ---------- Lock screen ---------- */
-                <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-                  {/* Blurred teaser backdrop */}
-                  <div
-                    className="pointer-events-none absolute inset-0 opacity-40 blur-xl"
-                    style={{
-                      background:
-                        "radial-gradient(120% 80% at 50% 0%, rgba(99,102,241,0.25), transparent 60%), radial-gradient(80% 60% at 50% 100%, rgba(217,70,239,0.18), transparent 60%)",
-                    }}
-                    aria-hidden="true"
-                  />
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 16, scale: 0.96 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                    className="relative z-10 w-full max-w-xs"
-                  >
-                    <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 shadow-[0_0_30px_rgba(99,102,241,0.25)]">
-                      <Lock size={24} />
-                    </div>
-
-                    <h3 className="mb-1.5 text-lg font-semibold text-white">Prototype locked</h3>
-                    <p className="mb-6 text-sm font-light text-neutral-400">
-                      Enter your access code to open the live TrackPay demo.
-                    </p>
-
-                    <form onSubmit={handleUnlock} className="flex flex-col gap-3">
-                      <motion.input
-                        value={codeInput}
-                        onChange={(e) => {
-                          setCodeInput(e.target.value);
-                          if (error) setError(false);
-                        }}
-                        type="password"
-                        inputMode="numeric"
-                        autoComplete="off"
-                        placeholder="Access code"
-                        aria-label="Prototype access code"
-                        aria-invalid={error}
-                        animate={error ? { x: [0, -8, 8, -6, 6, 0] } : { x: 0 }}
-                        transition={{ duration: 0.4 }}
-                        className={`h-12 w-full rounded-xl border bg-black/40 px-4 text-center text-base tracking-[0.3em] text-white placeholder:tracking-normal placeholder:text-neutral-500 outline-none backdrop-blur-sm transition-colors focus:ring-1 ${
-                          error
-                            ? "border-red-500/60 focus:border-red-500/60 focus:ring-red-500/30"
-                            : "border-white/15 focus:border-indigo-500/50 focus:ring-indigo-500/30"
-                        }`}
-                      />
-                      {error && (
-                        <p className="text-xs font-medium text-red-400">
-                          Incorrect code. Please try again.
-                        </p>
-                      )}
-                      <button
-                        type="submit"
-                        className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 text-sm font-semibold text-white transition-all duration-300 hover:bg-indigo-500 hover:shadow-[0_0_20px_rgba(99,102,241,0.4)]"
-                      >
-                        Unlock prototype
-                        <ArrowRight size={16} />
-                      </button>
-                    </form>
-
-                    <p className="mt-5 text-[11px] font-medium text-neutral-500">
-                      Don't have a code?{" "}
-                      <a
-                        href="mailto:founder@thetrackpay.com?subject=TrackPay%20prototype%20access"
-                        className="text-indigo-400 hover:text-indigo-300"
-                      >
-                        Request access
-                      </a>
-                    </p>
-                  </motion.div>
+              {!loaded && (
+                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 bg-slate-950/60">
+                  <div className="h-10 w-10 animate-spin rounded-full border-2 border-white/10 border-t-indigo-400" />
+                  <p className="text-xs font-medium tracking-wide text-neutral-500">Loading the live demo…</p>
                 </div>
               )}
+              <iframe
+                src={DEMO_URL}
+                title="TrackPay Interactive Demo"
+                loading="lazy"
+                onLoad={() => setLoaded(true)}
+                className="h-full w-full border-0"
+                allow="clipboard-write"
+              />
             </div>
           </div>
 

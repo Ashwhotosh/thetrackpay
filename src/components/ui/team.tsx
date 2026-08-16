@@ -87,7 +87,7 @@ export default function TeamPage() {
             </svg>
           </h1>
           <p className="max-w-2xl text-neutral-400">
-            A team of innovators, engineers, and designers building the Unified Money OS for the modern Indian user.
+            A team of innovators, engineers, and designers building the payment app with a financial intelligence layer for India.
           </p>
         </div>
 
@@ -137,7 +137,7 @@ export default function TeamPage() {
 
         <div className="mx-auto mt-20 max-w-3xl px-6 text-center lg:px-0">
           <p className="mb-8 font-medium text-lg text-neutral-200 leading-relaxed md:text-xl italic">
-            "We are not just building another payment app. We are crafting a Unified Money OS designed to give every Indian complete mastery and automated intelligence over their financial life."
+            "We are not just building another payment app. We are crafting the payment app with a financial intelligence layer for India — designed to give every Indian complete mastery and automated intelligence over their financial life."
           </p>
           <div className="text-center">
             <p className="font-semibold text-indigo-400">
