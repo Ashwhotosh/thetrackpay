@@ -5,7 +5,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 import { ModifiedClassicLoader } from "./loader";
-import TubesCursor from "./tubes-cursor";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -219,22 +218,18 @@ export function CinematicHero({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  // Gate expensive visual effects so they only run where the device can afford
-  // them. This is the single biggest performance win.
-  //  - enableHeavyFX: desktop mouse parallax + film-grain + scroll blur.
-  //  - enableTubes:  the continuous WebGL "tubes" cursor render loop. It's the
-  //    heaviest cost, so it's reserved for high-core desktops; typical laptops
-  //    keep the rest of the experience without the constant GPU drain.
-  const [{ enableHeavyFX, enableTubes }] = useState(() => {
-    if (typeof window === "undefined") return { enableHeavyFX: false, enableTubes: false };
+  // Gate the desktop-only extras (mouse parallax, film-grain, scroll blur) to
+  // capable devices. The WebGL "tubes" cursor background has been removed
+  // entirely in favour of a static image background — it was too laggy.
+  const [enableHeavyFX] = useState(() => {
+    if (typeof window === "undefined") return false;
     try {
       const desktop = window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
       const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const cores = (navigator as unknown as { hardwareConcurrency?: number }).hardwareConcurrency ?? 4;
-      const heavy = desktop && !reduced && cores >= 4;
-      return { enableHeavyFX: heavy, enableTubes: heavy && cores >= 8 };
+      return desktop && !reduced && cores >= 4;
     } catch {
-      return { enableHeavyFX: false, enableTubes: false };
+      return false;
     }
   });
 
@@ -314,6 +309,29 @@ export function CinematicHero({
   const mainCardRef = useRef<HTMLDivElement>(null);
   const mockupRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef<number>(0);
+  const bgParallaxRef = useRef<HTMLImageElement>(null);
+
+  // Subtle mouse-driven parallax on the background image (home only).
+  // Self-contained — deliberately does not touch the GSAP scroll timeline.
+  useEffect(() => {
+    if (activeSection !== "home") return;
+    const el = bgParallaxRef.current;
+    if (!el) return;
+    let raf = 0;
+    const onMove = (e: MouseEvent) => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const x = e.clientX / window.innerWidth - 0.5;
+        const y = e.clientY / window.innerHeight - 0.5;
+        el.style.transform = `scale(1.15) translate(${x * -26}px, ${y * -26}px)`;
+      });
+    };
+    window.addEventListener("mousemove", onMove);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(raf);
+    };
+  }, [activeSection]);
 
   // Segment Radii and Circumferences for Dashboard Donut Chart Simulation
   const rOuter = 64;
@@ -523,9 +541,21 @@ export function CinematicHero({
     >
       <style dangerouslySetInnerHTML={{ __html: INJECTED_STYLES }} />
 
+      {/* PARALLAX BACKGROUND: subtle photographic depth behind the grid.
+          Sits above the container's bg color but below the grid + content. */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <img
+          ref={bgParallaxRef}
+          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2400&q=80"
+          alt=""
+          className="h-full w-full object-cover opacity-50 will-change-transform"
+          style={{ transform: "scale(1.15)" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
+      </div>
+
       {enableHeavyFX && <div className="film-grain" aria-hidden="true" />}
       <div className="bg-grid-theme absolute inset-0 z-0 pointer-events-none opacity-50" aria-hidden="true" />
-      {activeSection === "home" && enableTubes && <TubesCursor />}
 
       {/* BACKGROUND LAYER: Hero Typography */}
       <div className="hero-text-wrapper absolute z-10 flex flex-col items-center justify-center text-center w-screen px-4 will-change-transform transform-style-3d">
