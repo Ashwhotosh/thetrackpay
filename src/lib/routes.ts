@@ -7,11 +7,11 @@ export const SECTION_PATHS: Record<string, string> = {
 };
 
 export const SECTION_TITLES: Record<string, string> = {
-  home: "TrackPay — The Payment App with Financial Intelligence for India",
-  team: "Meet the Founders — TrackPay",
-  vision: "Our Vision — TrackPay",
-  product: "Product — Interactive Demo — TrackPay",
-  survey: "Share Your Feedback — TrackPay",
+  home: "TrackPay | The Payment App with Financial Intelligence for India",
+  team: "Meet the Founders | TrackPay",
+  vision: "Our Vision | TrackPay",
+  product: "Product | Interactive Demo | TrackPay",
+  survey: "Share Your Feedback | TrackPay",
 };
 
 export function sectionFromPath(pathname: string): string {

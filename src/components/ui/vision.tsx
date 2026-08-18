@@ -19,7 +19,7 @@ const pillars: PillarData[] = [
     id: 1,
     title: "Next-Gen Bank Aggregation",
     headline: "Every Account. One Single Source of Truth.",
-    body: "Stop opening four different apps just to check your financial standing. Trackpay securely integrates your complete financial footprint—from monthly salary deposits to automated EMI cycles and long-term investment portfolios. Review your true net worth effortlessly.",
+    body: "Stop opening four different apps just to check your financial standing. Trackpay securely integrates your complete financial footprint, from monthly salary deposits to automated EMI cycles and long-term investment portfolios. Review your true net worth effortlessly.",
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ const pillars: PillarData[] = [
     id: 3,
     title: "UPI Family Circle",
     headline: "Finances Are a Team Sport.",
-    body: "Connect your household or trusted group to manage shared expenses, track allowances, and align on joint financial milestones smoothly—no awkward manual math or clunky shared spreadsheets required.",
+    body: "Connect your household or trusted group to manage shared expenses, track allowances, and align on joint financial milestones smoothly, with no awkward manual math or clunky shared spreadsheets required.",
   },
 ];
 
@@ -85,6 +85,12 @@ export default function VisionPage() {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+
+    // Route touch/wheel scroll through GSAP's normalized scroller while this
+    // pinned timeline is active, so mobile scrolling doesn't fight the pin
+    // recalculation on address-bar collapse/expand.
+    ScrollTrigger.config({ ignoreMobileResize: true });
+    const normalizer = ScrollTrigger.normalizeScroll(true);
 
     const ctx = gsap.context(() => {
       // SECTION 1: Pinned Scroll Timeline
@@ -164,6 +170,7 @@ export default function VisionPage() {
     return () => {
       ctx.revert();
       clearTimeout(timer);
+      normalizer?.kill();
     };
   }, []);
 
@@ -697,7 +704,7 @@ export default function VisionPage() {
           </p>
 
           <blockquote className="border-l-4 border-indigo-500 pl-6 italic text-neutral-300 text-lg max-w-3xl leading-relaxed my-8 font-light">
-            "We believe tracking your money shouldn't feel like a second job. The current payment ecosystem is fragmented: you pay in one app, invest in another, and track your budget on a spreadsheet. We built Trackpay to be the 'King of Payments'—a single, fluid operating system that thinks, automates, and optimizes for you."
+            "We believe tracking your money shouldn't feel like a second job. The current payment ecosystem is fragmented: you pay in one app, invest in another, and track your budget on a spreadsheet. We built Trackpay to be a single, fluid operating system that thinks, automates, and optimizes for you."
           </blockquote>
         </div>
 

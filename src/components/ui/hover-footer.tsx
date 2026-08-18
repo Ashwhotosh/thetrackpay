@@ -178,7 +178,7 @@ export function HoverFooter({ activeSection, setActiveSection }: HoverFooterProp
               <span className="text-white text-2xl font-bold tracking-tight">TrackPay</span>
             </div>
             <p className="text-sm text-neutral-400 leading-relaxed">
-              TrackPay (King of Payments) — the payment app with a financial intelligence layer for India.
+              TrackPay is the payment app with a financial intelligence layer for India.
             </p>
           </div>
 
@@ -239,8 +239,14 @@ export function HoverFooter({ activeSection, setActiveSection }: HoverFooterProp
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={16} className="text-indigo-400" />
-                <a href="mailto:thetrackpay@gmail.com" className="text-neutral-400 hover:text-indigo-400 transition-colors">
-                  thetrackpay@gmail.com
+                <a href="mailto:support@thetrackpay.com" className="text-neutral-400 hover:text-indigo-400 transition-colors">
+                  support@thetrackpay.com
+                </a>
+              </li>
+              <li className="flex items-center space-x-3">
+                <Mail size={16} className="text-indigo-400" />
+                <a href="mailto:tech@thetrackpay.com" className="text-neutral-400 hover:text-indigo-400 transition-colors">
+                  tech@thetrackpay.com
                 </a>
               </li>
             </ul>

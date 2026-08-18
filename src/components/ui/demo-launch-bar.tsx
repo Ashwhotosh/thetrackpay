@@ -7,7 +7,7 @@ interface DemoLaunchBarProps {
 
 const announcements = [
   { icon: PlayCircle, text: "Our Prototype Demo Video is Live" },
-  { icon: MessageSquareText, text: "Share Your Feedback — Takes 2 Minutes" },
+  { icon: MessageSquareText, text: "Share Your Feedback: Takes 2 Minutes" },
 ];
 
 export function DemoLaunchBar({ onNavigate }: DemoLaunchBarProps) {

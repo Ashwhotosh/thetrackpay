@@ -299,7 +299,7 @@ export default function FeedbackForm() {
       <Question n="Q6" label="Which of these features would you actually use?" required>
         <CheckboxGroup
           options={[
-            "Artha AI — personal AI financial advisor (investment advice, SIP advisor, tax planner, and more)",
+            "Artha AI: personal AI financial advisor (investment advice, SIP advisor, tax planner, and more)",
             "Automatic tax filing assistant (auto-reconciles Form 16, AIS, 26AS)",
             "Smart nudges for idle balance (e.g. \"move this to a mutual fund\")",
             "UPI Family Circle (shared tracking for family/roommates)",

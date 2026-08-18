@@ -220,7 +220,7 @@ export function CinematicHero({
 
   // Gate the desktop-only extras (mouse parallax, film-grain, scroll blur) to
   // capable devices. The WebGL "tubes" cursor background has been removed
-  // entirely in favour of a static image background — it was too laggy.
+  // entirely in favour of a static image background. It was too laggy.
   const [enableHeavyFX] = useState(() => {
     if (typeof window === "undefined") return false;
     try {
@@ -312,7 +312,7 @@ export function CinematicHero({
   const bgParallaxRef = useRef<HTMLImageElement>(null);
 
   // Subtle mouse-driven parallax on the background image (home only).
-  // Self-contained — deliberately does not touch the GSAP scroll timeline.
+  // Self-contained, deliberately does not touch the GSAP scroll timeline.
   useEffect(() => {
     if (activeSection !== "home") return;
     const el = bgParallaxRef.current;
@@ -393,6 +393,13 @@ export function CinematicHero({
     });
 
     const isMobile = window.innerWidth < 768;
+
+    // Route touch/wheel scroll through GSAP's normalized scroller while this
+    // pinned timeline is active. Without it, mobile browsers fight the pin
+    // recalculation with momentum scroll and address-bar collapse/expand,
+    // which is what shows up as jumpy/stuttery scrolling on phones.
+    ScrollTrigger.config({ ignoreMobileResize: true });
+    const normalizer = ScrollTrigger.normalizeScroll(true);
 
     const ctx = gsap.context(() => {
       const nirmaanBadge = document.querySelector(".global-nirmaan-badge");
@@ -516,6 +523,7 @@ export function CinematicHero({
 
     return () => {
       ctx.revert();
+      normalizer?.kill();
     };
   }, [metricValue, cOuter, activeSection]);
 
@@ -555,10 +563,17 @@ export function CinematicHero({
       </div>
 
       {enableHeavyFX && <div className="film-grain" aria-hidden="true" />}
-      <div className="bg-grid-theme absolute inset-0 z-0 pointer-events-none opacity-50" aria-hidden="true" />
+      <div
+        className="bg-grid-theme absolute inset-0 z-0 pointer-events-none opacity-50"
+        style={{ willChange: "filter, opacity, transform" }}
+        aria-hidden="true"
+      />
 
       {/* BACKGROUND LAYER: Hero Typography */}
-      <div className="hero-text-wrapper absolute z-10 flex flex-col items-center justify-center text-center w-screen px-4 will-change-transform transform-style-3d">
+      <div
+        className="hero-text-wrapper absolute z-10 flex flex-col items-center justify-center text-center w-screen px-4 transform-style-3d"
+        style={{ willChange: "transform, filter, opacity" }}
+      >
         <h1 className="text-track gsap-reveal text-3d-matte text-4xl md:text-6xl lg:text-[4.5rem] font-bold tracking-tight mb-4 max-w-4xl leading-tight">
           {tagline1}
         </h1>

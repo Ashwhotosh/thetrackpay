@@ -19,7 +19,7 @@ export default function SurveyPage() {
             See TrackPay in Action.
           </h1>
           <p className="max-w-2xl text-lg font-light text-neutral-400 md:text-xl">
-            A first look at TrackPay — the payment app with a financial intelligence layer for India — then tell us what you think.
+            A first look at TrackPay, the payment app with a financial intelligence layer for India, then tell us what you think.
             Your feedback directly shapes what ships next.
           </p>
         </div>
@@ -47,7 +47,7 @@ export default function SurveyPage() {
           </h2>
           <p className="max-w-xl font-light text-neutral-400">
             We built a short survey comparing your experience with existing payment apps to
-            what TrackPay offers. Fill it out below — it takes about two minutes.
+            what TrackPay offers. Fill it out below, it takes about two minutes.
           </p>
           <svg
             className="mt-2 h-6 w-6 animate-pulse text-indigo-400"

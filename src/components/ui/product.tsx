@@ -26,7 +26,7 @@ export default function ProductPage({ onNavigateToSurvey }: ProductPageProps) {
 
   return (
     <section className="relative w-full overflow-hidden bg-slate-950 pt-32 pb-24 text-white">
-      {/* Ambient brand glow — mirrors the hero / footer gradients */}
+      {/* Ambient brand glow, mirrors the hero / footer gradients */}
       <div className="pointer-events-none absolute -top-24 left-1/2 h-[38rem] w-[38rem] -translate-x-1/2 rounded-full bg-indigo-600/10 blur-[120px]" />
       <div className="pointer-events-none absolute bottom-0 right-0 h-96 w-96 rounded-full bg-fuchsia-500/5 blur-3xl" />
 
@@ -62,7 +62,7 @@ export default function ProductPage({ onNavigateToSurvey }: ProductPageProps) {
             transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
             className="max-w-2xl text-lg font-light text-neutral-400 md:text-xl"
           >
-            This isn't a video — it's the real thing. Tap around the phone below to explore
+            This isn't a video, it's the real thing. Tap around the phone below to explore
             TrackPay, the payment app with a financial intelligence layer for India: payments,
             insights, social splits and an AI advisor, all in one place.
           </motion.p>
@@ -94,7 +94,7 @@ export default function ProductPage({ onNavigateToSurvey }: ProductPageProps) {
               </span>
             </div>
 
-            {/* The embedded interactive app — height tracks the viewport on
+            {/* The embedded interactive app, height tracks the viewport on
                 mobile so the whole phone fits without page scroll. */}
             <div className="relative h-[68vh] max-h-[760px] min-h-[460px] overflow-hidden rounded-[2rem] bg-slate-900/40 sm:h-[720px] lg:h-[780px]">
               {!loaded && (
@@ -115,7 +115,7 @@ export default function ProductPage({ onNavigateToSurvey }: ProductPageProps) {
           </div>
 
           <p className="mt-4 text-center text-xs font-medium text-neutral-500">
-            Static, offline demo with sample data — no real money, accounts or backend involved.
+            Static, offline demo with sample data. No real money, accounts or backend involved.
           </p>
         </motion.div>
 

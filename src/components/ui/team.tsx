@@ -137,7 +137,7 @@ export default function TeamPage() {
 
         <div className="mx-auto mt-20 max-w-3xl px-6 text-center lg:px-0">
           <p className="mb-8 font-medium text-lg text-neutral-200 leading-relaxed md:text-xl italic">
-            "We are not just building another payment app. We are crafting the payment app with a financial intelligence layer for India — designed to give every Indian complete mastery and automated intelligence over their financial life."
+            "We are not just building another payment app. We are crafting the payment app with a financial intelligence layer for India, designed to give every Indian complete mastery and automated intelligence over their financial life."
           </p>
           <div className="text-center">
             <p className="font-semibold text-indigo-400">
