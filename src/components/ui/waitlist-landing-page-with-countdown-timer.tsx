@@ -52,7 +52,7 @@ export function WaitlistExperience(): ReactElement {
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   const calculateTimeLeft = () => {
-    const targetDate = new Date("2026-10-01T00:00:00+05:30")
+    const targetDate = new Date("2026-10-31T00:00:00+05:30")
     const now = new Date()
     const difference = targetDate.getTime() - now.getTime()
 
