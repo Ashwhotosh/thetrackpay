@@ -46,7 +46,7 @@ export function HomeHeader({ activeSection, setActiveSection }: HomeHeaderProps)
             <div className="hidden lg:flex items-center gap-1.5 rounded-full bg-white/5 px-2.5 py-1.5 ring-1 ring-white/10 backdrop-blur">
               <img src="/image/Nirmaan.png" alt="" className="h-4 w-4 object-contain" />
               <span className="text-[10px] font-semibold uppercase tracking-wider text-white/80">
-                Pre-Incubated at Nirmaan IITM
+                Pre-Incub at Nirmaan IITM
               </span>
             </div>
           </div>
