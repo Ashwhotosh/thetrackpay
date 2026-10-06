@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 if (typeof window !== "undefined") {
@@ -711,9 +712,13 @@ export default function VisionPage() {
         {/* Static Grid of Team Cards */}
         <div className="max-w-7xl mx-auto px-6 w-full flex items-center justify-center">
           <div ref={teamTrackRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full justify-center">
-            {teamMembers.map((member) => (
-              <div 
+            {teamMembers.map((member, i) => (
+              <motion.div 
                 key={member.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="team-card-wrapper w-full group bg-neutral-900/60 rounded-3xl p-6 border border-white/5 transition-all duration-300 hover:border-indigo-500/30 hover:shadow-[0_10px_30px_rgba(99,102,241,0.1)]"
               >
                 <div className="relative w-full h-[260px] rounded-2xl overflow-hidden mb-6 bg-neutral-800">
@@ -730,7 +735,7 @@ export default function VisionPage() {
                   <h4 className="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors duration-300">{member.name}</h4>
                   <p className="text-xs text-indigo-400 font-semibold uppercase tracking-wider">{member.role}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

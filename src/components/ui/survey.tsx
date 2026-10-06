@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import FeedbackForm from "./feedback-form";
 
 const YOUTUBE_EMBED_URL = "https://www.youtube.com/embed/xsLY5tpoz8Q";
@@ -9,7 +10,13 @@ export default function SurveyPage() {
 
       <div className="relative z-10 mx-auto max-w-5xl px-6">
         {/* Header */}
-        <div className="mx-auto mb-12 flex max-w-3xl flex-col items-center text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto mb-12 flex max-w-3xl flex-col items-center text-center"
+        >
           <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-400">
             <span className="h-2 w-2 rounded-full bg-indigo-400 animate-pulse" />
             Live Prototype
@@ -22,10 +29,16 @@ export default function SurveyPage() {
             A first look at TrackPay, the payment app with a financial intelligence layer for India, then tell us what you think.
             Your feedback directly shapes what ships next.
           </p>
-        </div>
+        </motion.div>
 
         {/* Video */}
-        <div className="relative overflow-hidden rounded-3xl border border-white/5 bg-neutral-900/40 shadow-[0_10px_40px_rgba(99,102,241,0.08)]">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative overflow-hidden rounded-3xl border border-white/5 bg-neutral-900/40 shadow-[0_10px_40px_rgba(99,102,241,0.08)]"
+        >
           <div className="aspect-video w-full">
             <iframe
               className="h-full w-full"
@@ -35,10 +48,16 @@ export default function SurveyPage() {
               allowFullScreen
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* Scroll cue */}
-        <div className="mx-auto mt-20 flex max-w-2xl flex-col items-center gap-4 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto mt-20 flex max-w-2xl flex-col items-center gap-4 text-center"
+        >
           <div className="inline-flex w-fit items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-400">
             Your Feedback Shapes v1
           </div>
@@ -58,10 +77,17 @@ export default function SurveyPage() {
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
-        </div>
+        </motion.div>
 
         {/* Form */}
-        <FeedbackForm />
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <FeedbackForm />
+        </motion.div>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Marquee } from "./marquee";
 import { cn } from "@/lib/utils";
 
@@ -62,7 +63,13 @@ export default function TeamPage() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="mx-auto mb-16 flex max-w-5xl flex-col items-center px-6 text-center lg:px-0">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto mb-16 flex max-w-5xl flex-col items-center px-6 text-center lg:px-0"
+        >
           <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white">
            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user-star"><path d="M16.051 12.616a1 1 0 0 1 1.909.024l.737 1.452a1 1 0 0 0 .737.535l1.634.256a1 1 0 0 1 .588 1.806l-1.172 1.168a1 1 0 0 0-.282.866l.259 1.613a1 1 0 0 1-1.541 1.134l-1.465-.75a1 1 0 0 0-.912 0l-1.465.75a1 1 0 0 1-1.539-1.133l.258-1.613a1 1 0 0 0-.282-.866l-1.156-1.153a1 1 0 0 1 .572-1.822l1.633-.256a1 1 0 0 0 .737-.535z"/><path d="M8 15H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/></svg>
           </div>
@@ -89,9 +96,15 @@ export default function TeamPage() {
           <p className="max-w-2xl text-neutral-400">
             A team of innovators, engineers, and designers building the payment app with a financial intelligence layer for India.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="relative w-full">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative w-full"
+        >
           <div className="pointer-events-none absolute top-0 left-0 z-10 h-full w-32 bg-gradient-to-r from-slate-950 to-transparent" />
           <div className="pointer-events-none absolute top-0 right-0 z-10 h-full w-32 bg-gradient-to-l from-slate-950 to-transparent" />
 
@@ -133,9 +146,15 @@ export default function TeamPage() {
               );
             })}
           </Marquee>
-        </div>
+        </motion.div>
 
-        <div className="mx-auto mt-20 max-w-3xl px-6 text-center lg:px-0">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mx-auto mt-20 max-w-3xl px-6 text-center lg:px-0"
+        >
           <p className="mb-8 font-medium text-lg text-neutral-200 leading-relaxed md:text-xl italic">
             "We are not just building another payment app. We are crafting the payment app with a financial intelligence layer for India, designed to give every Indian complete mastery and automated intelligence over their financial life."
           </p>
@@ -147,7 +166,7 @@ export default function TeamPage() {
               IIT Madras Nirmaan Pre-Incubated Startup
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
